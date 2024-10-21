@@ -23,6 +23,10 @@ section {
     margin-bottom: 20px;  /* Adds space between sections */
 }
 
+main {
+    margin-left: 10em;  /* Adds space above the first section */
+}
+
 /* Paragraph styling */
 p {
     line-height: 1.5;  /* Spacing between lines for readability */
