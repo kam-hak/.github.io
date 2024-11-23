@@ -24,8 +24,12 @@ section {
 }
 
 main {
-    margin-left: 1em;  /* Adds space above the first section */
-}
+    margin-left: auto;
+    margin-right: auto;
+    padding 0 1rem;
+    max-width: 1080px;/* Adds space above the first section */
+
+  }
 
 /* Paragraph styling */
 p {
