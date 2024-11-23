@@ -5,29 +5,37 @@ body {
     color: #000000;  /* Black text for strong contrast */
     margin: 20px;  /* Simple margin around the body */
     padding: 0;
+    max-width: 800px;/* Adds space above the first section */
+
 }
 
 /* Styling for the links */
 a {
     color: #0000EE;  /* Classic blue link color */
     text-decoration: underline;  /* Underline links, like in early web design */
-}
+  }
 
 /* Header styling */
 header {
     margin-bottom: 20px;  /* Simple margin below the header */
-}
+    max-width: 800px;/* Adds space above the first section */
+
+
+  }
 
 /* Section styling */
 section {
     margin-bottom: 20px;  /* Adds space between sections */
-}
+    max-width: 800px;/* Adds space above the first section */
+
+
+  }
 
 main {
     margin-left: auto;
     margin-right: auto;
     padding 0 1rem;
-    max-width: 1080px;/* Adds space above the first section */
+    max-width: 800px;/* Adds space above the first section */
 
   }
 
