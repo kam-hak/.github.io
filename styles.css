@@ -5,39 +5,40 @@ body {
     color: #000000;  /* Black text for strong contrast */
     margin: 20px;  /* Simple margin around the body */
     padding: 0;
-    max-width: 800px;/* Adds space above the first section */
-
+    max-width: 800px;/* Restricts the maximum width of the content */
 }
 
 /* Styling for the links */
 a {
     color: #0000EE;  /* Classic blue link color */
     text-decoration: underline;  /* Underline links, like in early web design */
-  }
+}
 
 /* Header styling */
 header {
     margin-bottom: 20px;  /* Simple margin below the header */
-    max-width: 800px;/* Adds space above the first section */
+    max-width: 800px;/* Restricts the maximum width of the header */
+}
 
-
-  }
+/* Base Header Styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #00006B; /* DarkBlue as a base color */
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
 
 /* Section styling */
 section {
     margin-bottom: 20px;  /* Adds space between sections */
-    max-width: 800px;/* Adds space above the first section */
-
-
-  }
+    max-width: 800px;/* Restricts the maximum width of sections */
+}
 
 main {
     margin-left: auto;
     margin-right: auto;
-    padding 0 1rem;
-    max-width: 800px;/* Adds space above the first section */
-
-  }
+    padding: 0 1rem;
+    max-width: 800px;/* Centers the main content area */
+}
 
 /* Paragraph styling */
 p {
