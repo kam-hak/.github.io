@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>2024-11-23-diverse-saturday-hirshman-llm-forecasting-warm-data-and-automating-posts</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../styles.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1
+id="diverse-saturday-hirshman-llm-forecasting-warm-data-and-automating-posts">Diverse
+Saturday: Hirshman, LLM forecasting, warm-data, and automating
+posts</h1>
+<ul>
+<li><strong>Hirshman’s Tunnel Effect</strong> - the idea that people are
+ok with inequality if they believe they will eventually benefit Horatio
+Alger Myth… however, if they don’t believe this, then they become very
+upset.</li>
+<li><strong>Hirshman’s Exit voice loyalty</strong> was mostly concerned
+with firms. However, to our knowledge, it’s never been applied to the
+concept of social movements and ‘voice’</li>
+<li>The ‘image’ of a matrix with respect to a vector is basically just
+them multiplied.</li>
+<li>To ‘solve’ a systems of equations you need to multiply by the
+inverse… I thinK?
+<ul>
+<li>A system of equations is essentially <span
+class="math inline">\(A*x=b\)</span>. To solve, you do <span
+class="math inline">\(x=A^-1*b\)</span>. The inverse is <span
+class="math inline">\(\frac{1}{det(A)}*Adj(A)\)</span> (Adj is adjugate
+matrix)</li>
+<li>Only works if A is a square matrix, and the determinant of A must
+not be 0.</li>
+</ul></li>
+<li><strong>Warm Data</strong>: This is akin to metadata for emergent
+relationships within complex systems. Also akin to documentation for
+complex, designed spaces. However, I haven’t seen any compelling case
+studies of how this effects irl change.</li>
+<li><strong>Medium Translation</strong>: Is using AI to translate the
+SAME MESSAGE between mediums. At the limit, this is a huge translation,
+but also smaller translations are possible…. (i.e. ton + audience)</li>
+<li><strong><a href="https://arxiv.org/html/2402.18563v1">Forecasting
+with LLMs</a></strong>: A team at Berkeley is exploring using LLM agents
+to make systematic forecasts. An extremely interesting paper on using
+LLMs to forecase events used a RAG design to automatically search for
+relevant information and produce forecasts. The models were almost as
+good as the AGGREGATE of competitive forecasters, and beat it in some
+cases.
+<ul>
+<li>It seems like it could use deterministic code as a ‘scratchpad’ for
+predictions.</li>
+<li>The RAG system allows it to get high quality data</li>
+</ul></li>
+<li>Simon Willison uses github’s issues as a more narrative, second
+brain for projects.
+<ul>
+<li>The ‘issues’ and project scaffolding tracks developments and allows
+him to switch rapidly between tasks without long information loading
+phases (as all the information and decisions are stored
+chronologically).</li>
+<li>Testing for myself with <a
+href="https://github.com/users/kam-hak/projects/2">KLH Website</a></li>
+</ul></li>
+<li><strong>Setting up personal learning notes page/website</strong>
+<ul>
+<li>I’ve set up a blog page for my website (kamranhakiman.com/blog), and
+improved the readability of the very simple website (e.g. limited the
+width of text to wrap at 800px). I’m doing coding by hand for muscle
+memory learning.</li>
+<li>Working with Claude and ChatGPT, I was able to produce an automated
+workflow which pulls from daily notes on my computer and automatically
+adds both the correct link into my website.</li>
+<li>The actual program is in python. However, I’m pulling in both html
+and css.</li>
+</ul></li>
+<li><strong>Maths</strong>
+<ul>
+<li>Binomial theorem: <span class="math inline">\((a + b)^n =
+\sum_{k=0}^n \binom{n}{k} a^{n-k} b^k\)</span>, note that <span
+class="math inline">\(\binom{n}{k}=\frac{n!}{k!(n-k)!}\)</span> is the
+binomial selection of n from k.</li>
+<li>Arithmetic sums solves as: <span class="math inline">\(S_n =
+\frac{n}{2}*(a+l)\)</span>, where a is first term, l is last term, and n
+is the number of terms
+<ul>
+<li>Sigma notation: <span class="math inline">\(S_n = \sum_{k=1}^{n}
+\left( a_1 + (k-1)d \right)\)</span> – here d is the amount of
+de/in-crementation</li>
+</ul></li>
+<li>Geometric sum solves as: <span
+class="math inline">\(S_n=a*\frac{1-(r)^n}{1-r}\)</span>, where <span
+class="math inline">\(r\)</span> is the ratio of interest and <span
+class="math inline">\(a\)</span> is the first time
+<ul>
+<li>Sigma notation: <span class="math inline">\(S = \sum_{n=0}^{24} a
+\cdot (r)^n\)</span></li>
+</ul></li>
+<li><strong>Permutation vs. Combination</strong> notation. <span
+class="math inline">\(r\)</span> are the events that we care about, and
+<span class="math inline">\(n\)</span> is the total number of possible
+events.
+<ul>
+<li>Permutations (order doesn’t matter) are just the factorial of the n!
+/ (n-r)!: <span class="math inline">\(\frac{n!}{r!(n-r)!}\)</span> or
+<span class="math inline">\(_r P_n\)</span> or <span
+class="math inline">\(P(n,r)\)</span></li>
+<li>Combinations (order DOES matter) are the factorial of <span
+class="math inline">\(\frac{n!}{r!(n-r)!}\)</span> or <span
+class="math inline">\(_r C_n\)</span> or <span
+class="math inline">\(C(n,r)\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+</body>
+</html>
