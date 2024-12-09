@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>2024-12-09-agency-multi-cultural-democracy-and-classifying-qual-data-with-llms-python</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../styles.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1
+id="agency-multi-cultural-democracy-and-classifying-qual-data-with-llmspython">Agency,
+Multi-cultural Democracy, and Classifying Qual Data with
+LLMs/Python</h1>
+<h2 id="theory-and-ideas">Theory and Ideas</h2>
+
+<h3
+id="future-of-multicultural-democracy-journal-of-democracy-issue">Future
+of Multicultural Democracy (Journal of Democracy Issue)</h3>
+<h4
+id="majoritarianism-without-majorities-chandra_2024_futuremultiracialdemocracy">1.
+Majoritarianism without majorities <span class="citation"
+data-cites="Chandra_2024_FutureMultiracialDemocracy">(Chandra
+2024)</span></h4>
+<ul>
+<li><strong>Main Argument</strong>: Chandra argues in JoD 2024 issue
+that viewing democracy as majoritarian rule incentivizes the
+conglomeration of minorities into larger groupings to reach a majority –
+this initially causes ‘majoritarian nationalists’ which is a grouping of
+minorities which claim a common ethnicity. Fundamentally, she argues
+that democracy should frame itself as <em>minority rule</em>.
+<ul>
+<li><strong>Majorities(arians) with a minority complex</strong> ‚Äì
+These ‘majoritarians’ fear being replaced by ethnic change.
+Additionally, ethnic identity (e.g. Italians in the US were once seen as
+non-protestant minorities, who a protestant majority feared and
+combatted politically). Demographic threat inflames ethnic
+majoritarianism (i.e. ethnical nationally) and democratic backsliding.
+This backsliding is especially clear using maximalist definitions of
+democracy, as minority rights.</li>
+<li><strong>Constructed majorities</strong> – these majorities are often
+(always?) an agglomeration of minority groups which claim a common
+supra-ethnicity or race. For example, ‘white’ in the case of America
+typically includes Italians, despite Catholics/Italians being seen as
+separate previously.</li>
+<li><strong>Censuses drive identity formation, not education
+(alone)</strong> – groups are inherently multidimensional and poorly
+defined. They are also not <em>legible</em> to their members
+intrinsically. <em>Censuses</em> are what drive the conglomeration of
+minority groups into a majority, and create this ‘majority with a
+minority complex’ dynamics.</li>
+<li><strong>Democracy drives the <em>political</em> construction of
+majorities</strong>: Without democracy, being part of a majority has
+much less utility. For much of human history, people attempted
+<em>not</em> to be associated with the (rude and unwashed) masses.
+Instead, they sought whatever identity lead to benefit.</li>
+<li><strong>Immigrant and natives</strong> – become a salient dividing
+line in politics, where different immigrants are viewed as political
+threats or opportunities depending on the policy positions and expected
+voting disposition of the immigrants (among other things, such as
+economic effects and labor competition; perceived cultural fit,
+etc.).</li>
+<li><strong>Democracy and ethnocracy go together</strong>: Because
+democracy drives the formation of (ethnic) ‘majorities’ which can
+compete politically, thus driving a majoritarian outlook. This is
+perhaps the boldest claim.</li>
+<li><strong>Manufacturing majorities, through violent/othering
+rhetoric</strong> Because majoritarianism is difficult, it relies on
+violence and ‘othering’ outsiders to establish. This is akin to
+promoting nationalism through <em>negative national sentiment</em> (see
+<span class="citation"
+data-cites="Alesina_2020_NationbuildingNationalismWars">Alesina, Reich,
+and Riboni (2020)</span>).</li>
+</ul></li>
+<li><strong>Chandra’ solution – Redefine Democracy as Minority
+Protecting</strong>: To reduce the fear of political loss (and therefore
+the driver of majorities(ians) with a minority complex), we need focus
+democracies on strengthening minority protection and <em>accept</em>
+that majorities are primarily manufactured for and by <em>political
+means</em> by multiple minority groups. And interpreted through censuses
+(e.g. category of ‘white’ on the US census). Similarly, BJP in India
+draws supporters from a highly diverse set of hindus without India.</li>
+</ul>
+<h4 id="who-decides-who-is-democratic-przeworski_2024_whodecideswhat">2.
+Who decides who is Democratic <span class="citation"
+data-cites="Przeworski_2024_WhoDecidesWhat">(Przeworski
+2024)</span></h4>
+<ul>
+<li>This short (11pg!) paper is full of distilled ideas on defining
+conceptions of democracy, and how ‘slippery’ the term is to
+operationalize. The heart of the essay is that minimal, ‘electoralism’
+definitions of democracy, actually rely on a richer set of assumptions
+(inadvertently maximalist). Yet, recognizing this, and moving towards a
+maximalist approach presents a <a
+href="https://en.wikipedia.org/wiki/Optimal_stopping">stopping
+problem</a>, where ‘true’ democracy becomes almost impossible to reach.
+<ul>
+<li><strong>Democracy as a Process or Embodiment of Values</strong>: The
+two ‘poles’ of democratic minimalism (thin) vs. democratic maximalism
+(thick) are determined by whether democracy is a process for
+<em>resolving</em> political conflicts, or requires <em>embodying</em>
+certain values (e.g. minority protection, freedoms, etc.).
+<ul>
+<li>A minimal (thin) definition of democracy requires only that citizens
+decide by who and how they will be governed. Any answer they provide is
+inherently democratic. Whether something is democratic is Democracy as a
+Process or Embodiment of Values|process oriented, rather than the
+embodiment of values.</li>
+<li>Naturally, maximal (thick) definitions of democracy are inverse.
+However, Przeworski argues that maximalist definitions of democracy are
+prompted by a clear weakness of minimal democracy: a <em>process</em>
+has many requirements, such as the free flow of information, adequate
+information, fair electoral and political competition, and lack of
+duress. However, attempting to define democracy in maximalist terms also
+present a stopping problem. You can always justify adding more
+requirements to democracy (media freedom, freedom of movement, electoral
+safeguards). However,</li>
+</ul></li>
+<li><strong>Everyone claims democracy</strong>: Everyone (including
+non-democrats) claim to be democratic. No one claims to be a fascist,
+even if they agree with some of its <em>content</em>. And communism is
+often defended on <em>democratic</em> grounds (e.g. Xi Jingping’ ‘<a
+href="http://en.moj.gov.cn/2024-03/05/c_967573.htm">whole process
+people’s democracy</a>’).</li>
+<li><strong>More subtly, anti-liberal groups claim minimal
+democracy</strong>: many newer right-wing parties (which are viewed as
+anti-democracy from a maximalist vantage) have generally shied away from
+impinging on electoral process. Rather, they have implemented laws which
+are <em>anti-pluralist</em>, such as France severely restricting the
+rights of noncitizens in France. yet, these laws are widely supported
+(pg 5). Are these undemocratic or simply xenophobic?
+<ul>
+<li>A thornier point is whether democracy is invested in the people of
+today, or in the values embedded in an institution. For instance, the
+Indian constitution enshrines <em>equality</em> of all religions.
+However, the majority of people <em>today</em> may welcome
+discrimination. Are judges acting undemocratically to strike down laws
+with majority support? The requirement for super-majorities to change
+constitutions is, arguably, quite undemocratic, especially if the
+requirement is exorbitant (imagine a 95% requirement to purge a
+constitutional amendment which benefited 10% of the population).</li>
+</ul></li>
+<li><strong>Populism is dissatisfaction with representative
+institutions</strong>: Populism arises when people feel poorly
+represented. Populism has two forms, participatory populism and
+delegative populism. Participatory is good-to-benign, but ‚âàineffective
+(little evidence given). While delegative populism is a ‘by any means
+necessary’ delegation, which is antithetical to the norms and
+institutional safeguards protecting maximalist democracy, or ‘liberal
+democracy’, functioning.
+<ul>
+<li><strong>Participatory populism</strong> is ensuring the ‘voice of
+the people’ is incorporated into political processes <em>beyond</em>
+elections. For instance, through shorter terms, participatory
+institutions at the local level, etc. Here, the idea is to <em>increase
+the institutional surface area</em> between the people and institutions
+(e.g. participatory budgeting in Brazil).</li>
+<li><strong>Delegative populism</strong> is to ensure that the ‘will of
+the people’ is enacted <em>no matter what</em>, even if it means
+breaking norms or institutional safeguards. For instance, packing the
+courts, breaking political norms (e.g. independence of the fed / FBI),
+or skirting constitutionally enshrined <em>values</em>.</li>
+</ul></li>
+<li><strong>Delegative populism</strong> will often be tasked <em>by a
+majority</em> with destroying the foundations of democracy itself (at
+least liberal, though not limited to). However, if they avoid destroying
+<em>democratic</em> institutions, and instead focus on institutions
+which stymie the will of the public, they are not inherently illiberal
+(e.g. a reformer could fix corruption).</li>
+<li><strong>Delegative (illiberal) populism is driven by
+‘magicians’</strong>: These are individuals claiming to be saviors
+(e.g. I alone…). They promise strength against the systems people have
+grown to distrust.
+<ul>
+<li><em>The emergence of political magicians is also not antidemocratic.
+It just shows that when people become fed up with the established
+alternatives, they are willing to take the risk of embracing untried
+solutions.</em> (pg 11)</li>
+</ul></li>
+<li>Przeworksi goes back to defending elections themselves.
+<ul>
+<li><strong>Precaution</strong>: Elections, beyond any specific policy,
+allow for removal of governments at a later date. Supporters should not
+trade elections for even the best (?) temporary policy.</li>
+<li><strong>Pacification</strong>: if electoral conflict exists, it
+obviates much of the the need for arms. Other systems can solve
+political problems, but elections are the only which are available to
+<em>all</em> citizens.
+<ul>
+<li>*In Norberto Bobbio’s words, &gt; “What is democracy other than a
+set of rules . . . for the solution of conflicts without
+bloodshed?”</li>
+</ul></li>
+</ul></li>
+<li><strong>Minimalism unites, maximalism divides</strong>: It is easy
+to be <em>against</em> backsliding, but very hard to coalesce around a
+single policy alternative. This is a fundamental asymmetry which,
+ironically, Przeworski claims can only be solved through elections
+(minimalist?).</li>
+</ul></li>
+</ul>
+
+<h3 id="development-as-freedom">Development as Freedom (WIP)</h3>
+<ul>
+<li>I’m returning to Sen’s ‘development as freedom’ to specifically
+consider his treatment of agency. An important argument from Elizabeth
+Wood’s account of insurgency in El Salvador is that their <em>experience
+of collective action</em> changed the population’s self-conception,
+raising the <em>sense of agency</em>, as well as their
+<em>self-conception</em>. Coming in, I am curious about multiple things:
+<ol type="1">
+<li>Are capabilities and agency interchangeable?</li>
+<li>Is the subjective notion of self-efficacy (e.g. including socialized
+notions, such as the Horatio Alger myth) a moderator for capabilities?
+<ul>
+<li>I may be objectively capable, but systematically do not utilize the
+capability if I <em>view myself</em> as incapable.</li>
+<li>Action has three categories of consequence related to capabilities,
+changes to internal capacity, changes to external capacities, and
+utility payoffs:
+<ul>
+<li><strong>Internal capacity</strong>: is a variety of internal
+processes such as skill, tacit/explicit knowledge, and self-conception
+as a result of action. This can be positive (higher self-efficacy) or
+lower (discouragement / incorrect knowledge).</li>
+<li><strong>External capacity</strong>: is the change in externally
+mediated capacities as a result of pay-off</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+
+<h2 id="tooling">Tooling</h2>
+<h3 id="python-to-ipynb">Python to ipynb</h3>
+<ul>
+<li><strong>Connecting py to ipynb run on the cloud</strong>
+<ul>
+<li>In using kaggle problems to learn about machine learning, I wanted
+to connect my local nvim environment to Kaggle’s notebook (a slighty
+modified ipynb) and cloud compute resource.</li>
+<li>The easiest solution was to use <strong>jupytext</strong> to connect
+a py and ipynb of the notebook, which mirror the ipynb on Kaggle. I then
+used a makefile to automate the 3 main steps: 1) sync my py to my local
+ipynb, 2) to sync this with Kaggle via their API, and 3) to update this
+all to a git so the projects are saved.
+<ul>
+<li>Mirroring Kaggle’s cloud file structure is slightly complicated. I
+used the following to adjust for our different environments, while
+keeping everything else the same:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(<span class="st">&quot;/kaggle/input/titanic/&quot;</span>):     </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    DATA_PATH <span class="op">=</span> <span class="st">&quot;/kaggle/input/titanic/&quot;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:    </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   DATA_PATH <span class="op">=</span> <span class="st">&quot;./kaggle/input/titanic/&quot;</span>  </span></code></pre></div></li>
+</ul></li>
+</ul>
+<h3
+id="python-programming-qual-to-quant-data-classifier-using-ollama">Python
+Programming: Qual-to-Quant data Classifier, using Ollama</h3>
+<ul>
+<li>Prototyped a Qual-to-Quant data Classifier, using Ollama which
+categorizes structured, qualitative text.
+<ul>
+<li><strong><a href="https://ollama.com/">Ollama</a></strong> allows me
+to run open-source LLM models locally. This is super useful for
+prototyping, without the cost or hassle of calling enterprise models via
+an API. I’m using a llama3.2, 3B parameter model which runs fairly
+quickly on a m1 Mac.
+<ul>
+<li>Ollama has a <strong>python package</strong> which allows you to
+modify its parameters in a structured fashion, especially for multiple
+calls (rather than going through the terminal).</li>
+<li>However, the ollama python package requires the ollama app to be
+running on your machine locally, and also is only installable via pip
+(the Conda version package seems no longer supported).</li>
+</ul></li>
+<li>I generated a test dataset to categorize food to ethnic cuisines,
+which worked well.</li>
+<li>I also added a ‘clarification’ loop, where you can clarifying coding
+that was incorrect (by providing additional rules or information.). This
+worked well if I was extremely specific (e.g. Pad Thai is American), but
+not if I attempted to introduce a logic (e.g. switch the categorization
+for all Italian and Thai foods).</li>
+<li><strong>Refinement / testing</strong>:
+<ul>
+<li>Test this on social-science relevant dataset (ACLED MMR?)</li>
+<li>Connect this to an enterprise model (Gemini - for the very long
+context or Claude - most sophisticated text analysis?)</li>
+</ul></li>
+<li><strong>Major next step</strong>: is to build a program which takes
+<em>unstructured</em> qualitative data and breaks it down into logical
+‘pieces’. I will likely start with plain text, then introduce extracting
+plain text from a pdf.</li>
+</ul></li>
+</ul>
+<h3
+id="generative-ai-samples-which-generalize-to-human-populations">Generative
+AI samples which generalize to human populations?</h3>
+<p>A recent arxiv paper by <span class="citation"
+data-cites="Park_2024_GenerativeAgentSimulations">Park et al.
+(2024)</span>, <a href="https://arxiv.org/abs/2411.10109">Generative
+Agent Simulations of 1,000 People</a>, claims that LLMs can be used to
+fairly reliably approximate the distribution of a sample from true human
+populations. They claim to correctly model minority groups, and,
+surprisingly, to be able to replicate responses reliably over time (85%
+as well as humans). A recurring tension with AI is whether they need to
+be good, or simply better than human alternatives. Humans are
+notoriously unreliable when answering questions over time (or driving),
+so how much better, if at all, should we expect AI to be?</p>
+<h3 id="misc">Misc</h3>
+<ul>
+<li><a
+href="https://fs.blog/playing-to-win-how-strategy-really-works/">Playing
+to Win</a>: <strong>playing to play vs. playing to win</strong> is
+described in the as clearly stating ‘win conditions’ and creating a
+strategy from there. Most companies merely look at existing patterns and
+build their strategy. However, they never check to ensure it will
+<em>actually</em> get them to their desired goal.</li>
+<li>Experimented with making a <a
+href="https://kamranhakiman.com/trig_viz_prototype/">JS application
+meant to develop an intuition for the relationship between major trig
+functions</a> around the unit circle
+<ul>
+<li>ChatGPT’s o1-mini worked well, but required about 8 prompts. It was
+often faster to make small changes directly in the JS rather than work
+with it to make small adjustments.</li>
+<li>Unlike Claude, it’s not able to run the application as an
+‘artifact’</li>
+<li>Being able to ‘read’ the code was more important than understanding
+the syntax. As the llms make syntax translation/correction almost
+obsolete (at least for basic projects).</li>
+</ul></li>
+<li>Reviewing Derivative Rules: <strong>Chain rule</strong> <span
+class="math display">\[f&#39;(x)=\frac{d}{dx}(g(h(x)))=g&#39;(x)h(x)\cdot
+g(x)h&#39;(x)\]</span>
+<ul>
+<li><strong>Product rule</strong>: <span
+class="math display">\[f&#39;(x) = \frac{d}{dx}g(x)h(x) =
+g&#39;(x)h(x)+g(x)h&#39;(x)\]</span>
+<ul>
+<li>the chain rule, but with a + instead of ‚Ä¢</li>
+</ul></li>
+<li><strong>Quotient Rule</strong>: <span
+class="math display">\[f&#39;(x)=\frac{d}{dx}\frac{g(x)}{h(x)}=\frac{g&#39;(x)h(x)-g(x)h&#39;(x)}{(h(x))^2}\]</span>
+<ul>
+<li>the product rule but subtracting and, and divided by
+<em>denominator</em> function squared: <span
+class="math display">\[(h(x))^2\]</span></li>
+</ul></li>
+<li><strong>Addition / subtraction are simple</strong> – no manipulation
+besides the basic derivative pattern needed. aka: <span
+class="math display">\[f‚Äô(x) = \frac{d}{dx}g(x)\pm h(x)=g‚Äô(x) \pm
+h‚Äô(x)\]</span></li>
+<li><strong>Constants outside of the functions are unaffected by
+derivation</strong> (they simply multiply into the derivations)</li>
+<li>Trig identities for derivation
+<ul>
+<li><p><span class="math display">\[\frac{d}{dx}cos(x) =
+-sin(x)\]</span></p></li>
+<li><p><span class="math display">\[\frac{d}{dx}sin(x) =
+cos(x)\]</span></p></li>
+<li><p><span class="math display">\[\frac{d}{dx}tan(x) =
+sec^2(x)\]</span></p></li>
+<li><p>(as review, cos = is x coord of unit circle, sin is y, tan is
+sin/cos.)</p>
+<p>!Screenshot 2024-12-05 at 10.49.11.png|300</p></li>
+<li><p><strong>secant a line touches a curve at two</strong> (or more?)
+points.</p></li>
+<li><p><strong>Tangent only touches at one</strong>.</p>
+<ul>
+<li>The tangent point can be found with the FOD. So the tangent is at
+the max/min.</li>
+<li><strong>If the SOD is negative, then it is a local
+maximum</strong>,</li>
+<li><strong>if it is positive, then it is a local minimum</strong>.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-entry-spacing="0" role="list">
+<div id="ref-Alesina_2020_NationbuildingNationalismWars"
+class="csl-entry" role="listitem">
+Alesina, Alberto, Bryony Reich, and Alessandro Riboni. 2020.
+<span>“Nation-Building, Nationalism, and Wars.”</span> <em>Journal of
+Economic Growth</em> 25 (4): 381–430. <a
+href="https://doi.org/10.1007/s10887-020-09182-7">https://doi.org/10.1007/s10887-020-09182-7</a>.
+</div>
+<div id="ref-Chandra_2024_FutureMultiracialDemocracy" class="csl-entry"
+role="listitem">
+Chandra, Kanchan. 2024. <span>“The <span>Future</span> of
+<span>Multiracial Democracy</span>: <span>Majoritarianism Without
+Majorities</span>.”</span> <em>Journal of Democracy</em> 35 (4): 46–62.
+<a
+href="https://doi.org/10.1353/jod.2024.a937733">https://doi.org/10.1353/jod.2024.a937733</a>.
+</div>
+<div id="ref-Park_2024_GenerativeAgentSimulations" class="csl-entry"
+role="listitem">
+Park, Joon Sung, Carolyn Q. Zou, Aaron Shaw, Benjamin Mako Hill, Carrie
+Cai, Meredith Ringel Morris, Robb Willer, Percy Liang, and Michael S.
+Bernstein. 2024. <span>“Generative <span>Agent Simulations</span> of
+1,000 <span>People</span>.”</span> arXiv. <a
+href="https://doi.org/10.48550/ARXIV.2411.10109">https://doi.org/10.48550/ARXIV.2411.10109</a>.
+</div>
+<div id="ref-Przeworski_2024_WhoDecidesWhat" class="csl-entry"
+role="listitem">
+Przeworski, Adam. 2024. <span>“Who <span>Decides What Is
+Democratic</span>?”</span> <em>Journal of Democracy</em> 35 (3): 5–16.
+<a
+href="https://doi.org/10.1353/jod.2024.a930423">https://doi.org/10.1353/jod.2024.a930423</a>.
+</div>
+</div>
+</body>
+</html>
