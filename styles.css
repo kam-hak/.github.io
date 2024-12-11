@@ -5,7 +5,7 @@ body {
     color: #000000;  /* Black text for strong contrast */
     margin: 20px;  /* Simple margin around the body */
     padding: 0;
-    max-width: 800px;/* Restricts the maximum width of the content */
+    max-width: 800px; /* Restricts the maximum width of the content */
 }
 
 /* Styling for the links */
@@ -17,7 +17,7 @@ a {
 /* Header styling */
 header {
     margin-bottom: 20px;  /* Simple margin below the header */
-    max-width: 800px;/* Restricts the maximum width of the header */
+    max-width: 800px; /* Restricts the maximum width of the header */
 }
 
 /* Base Header Styling */
@@ -30,17 +30,34 @@ h1, h2, h3, h4, h5, h6 {
 /* Section styling */
 section {
     margin-bottom: 20px;  /* Adds space between sections */
-    max-width: 800px;/* Restricts the maximum width of sections */
+    max-width: 800px; /* Restricts the maximum width of sections */
 }
 
 main {
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
-    max-width: 800px;/* Centers the main content area */
+    max-width: 800px; /* Centers the main content area */
 }
 
 /* Paragraph styling */
 p {
-    line-height: 1.5;  /* Spacing between lines for readability */
+    line-height: 1.1;  /* Spacing between lines for readability */
+}
+
+/* Styling for unordered lists */
+ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 1.2em; /* Space for the custom bullet */
+    margin-left: 0; /* Reset left margin */
+    max-width: 800px; /* Restricts maximum width for better wrapping */
+}
+
+/* Styling for list items with custom bullets */
+ul li {
+    position: relative; /* Establish positioning context */
+    padding-left: 1.2em; /* Space for the custom bullet */
+    text-indent: -1.2em; /* Negative indent to align wrapped lines */
+    margin-bottom: 0.1em; /* Space between list items */
+    line-height: 1; /* Improves readability */
 }
