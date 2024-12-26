@@ -5,6 +5,7 @@
 ### Freedom (liberty) and abstraction
 
 - A quick exercise reflecting on freedom or liberty in Sen & Nussbaum's work. Defining freedom / non-freedom requires going up and down the ladder of abstraction (see @Cartwright_2012_EvidencebasedPolicyPractical for an extended discussion of traversing abstraction).
+
 #### Highest: Quality / Quantity
 
 - At most abstract, there are two coefficients for freedom or agency as understood by Sen. Life quantity (longevity) and life quality (life states accessible during time). Between the two, the quality budget abstracts far more complexity (health, political action, economic, cultural, etc.). Compared to longevity, which is measured ≈losslessly with a single number (time lived).
@@ -34,13 +35,15 @@
 	- Fundamentally, computer science **cannot** not support copyright. A pattern cannot possibly be reliably traced to a source without attaching additional data. The data itself can never be forced to include authorship meta-data. 
 	- **John Cage's 4'33" is a perfect example**. An empty mp3 is identical to his composition. However, a copyright lawyer may argue that he 'owns' that silence *if it was copied from his album, versus someone simply compressed silence into an identical mp3 for 4min 33 sec*. This is ridiculous to a CS, but meaningful to a lawyer, because only lawyers see copyright above the natural existence of bits, which are not inherently attributable. At the extreme of *no data*, this becomes ridiculous.
 	- Another excellent example:  [on the US Naval Observatory Web site](http://aa.usno.navy.mil/faq/docs/lawyers.html), they state that you cannot use sunset/rise times in court. Court requires an 'expert'. It is patently ridiculous, unless you are a lawyer who sees the law as meaningful rules of the game (or metadata) atop the reality of sunrise/set.
+
 ### AI as *Medium* (not just language) Translation
 
 - Dimitri Glazkow has a fascinating  [blogpost](https://whatdimitrilearned.substack.com/p/2024-04-01) titled 'flexibility of the medium' where he describes switching two blogs into lyrics (ChatGPT), then into a song (Suno). He could have also put them into an image with DALLE / Midjourney.
 - Here, the **message** is ≈ consistent, but the **medium** is changing.
 - The cost of this used to be enormous, requiring, requiring a deep domain expertise of the content *and* the meta-knowledge of **both** mediums. Such interpolation ability is extremely rate for humans. But, because AI has near-universal compression of how different media operates (e.g. a BBC newscast vs. a sesame street episode), it it is fairly trivial to translate content between these media contexts. However, more interestingly than BBC to sesame street. 
 	- AI can also translate between media itself (not just sub-media environments, such as BBC and sesame street). AI can go text --> visual --> auditory. 
-	- For example, how would Picasso draw the notion of democratic peace theory drawn from a Brookings Report (ask Midjourney or ChatGPT)?:
+	- For example, how would Picasso draw the notion of democratic peace theory drawn from a Brookings Report (ask Midjourney or ChatGPT)?:  
+
 	<img src="assets/demo_peace_cubist.png" width="200" alt="demo_peace_cubist.png" />
 	- How would the Strokes represent it in a song? - Suno can write an indie rock song "[democratic peace](https://suno.com/song/dac8fc73-794d-44be-95ee-7beb9137001d)"
 - We think of translation across languages, but mediums are essentially meta-languages (encoded in sound vs. script vs. pixels). Of course, each of these is mediated by silicon / binary for LLMs (and their non-language generative AI analogs) to work.
