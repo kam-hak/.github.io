@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>2024-12-20-pseudoblog-abstractions-leakage-in-social-science-what-should-we-do</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Pseudoblog:
+Abstraction Leakage is a Significant Problem in Social Science. What should we do?</title>
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -41,22 +43,18 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../styles.css" />
-  <script
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
-  type="text/javascript"></script>
+<link href="../styles.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body>
-<h1
-id="pseudoblog-abstractions-leakage-in-social-science-what-should-we-do">Pseudoblog:
+<h1 id="pseudoblog-abstractions-leakage-in-social-science-what-should-we-do">Pseudoblog:
 Abstraction Leakage is a Significant Problem in Social Science. What should we do?</h1>
 <h2 id="research-theory">Research / Theory</h2>
 <h3 id="social-science-abstractions-leak---what-should-we-do">Social
 science abstractions ‘leak’ - what should we do?</h3>
 <blockquote>
 <p><em>Abstractions are vital, but like many living things, dangerous,
-because <a
-href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/">abstractions
+because <a href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/">abstractions
 always leak</a>. (“You’re very clever, young man, but it’s reductionism
 all the way down!”) This is in some sense the opposite of a
 mathematician: a mathematician tries to ‘see through’ a complex system’s
@@ -67,8 +65,7 @@ the simple abstract system down to the more-complex less-abstract (but
 also more true) version. (A mathematician might try to transform a
 program up into successively more abstract representations to eventually
 show it is trivially correct; a hacker would prefer to compile a program
-down into its most concrete representation to <a
-href="/forking-path">brute force all execution paths</a> &amp; find an
+down into its most concrete representation to <a href="/forking-path">brute force all execution paths</a> &amp; find an
 exploit trivially proving it incorrect.</em> /// from Gwern’s excellent
 <a href="https://gwern.net/unseeing">On Seeing Through and Unseeing: The
 Hacker Mindset</a>)</p>
@@ -79,8 +76,7 @@ attempt to regularize and explain the world. However, abstractions
 always leak, and points of leakage point to two things:
 <ol type="1">
 <li>Leakage provides fodder and guidance on new scientific paradigms
-<span class="citation"
-data-cites="Kuhn_1996_StructureScientificRevolutions">(Kuhn
+<span class="citation" data-cites="Kuhn_1996_StructureScientificRevolutions">(Kuhn
 1996)</span>, which are spurred on by accumulated, unexplained anomalies
 (e.g. Newtonian physics slightly misrepresents Mercury’s orbit).</li>
 <li>Leakage allows <em>hackers</em> to <em>un</em>see the abstraction ,
@@ -163,8 +159,7 @@ in communities or implementing bodies). Fundamentally, this relies on
 two things:
 <ol type="1">
 <li>Building and maintaining the intrinsic motivation of mission-driven
-implementers <span class="citation"
-data-cites="Honig_2022_ManagingMotivationPublic">(Honig 2022)</span>,
+implementers <span class="citation" data-cites="Honig_2022_ManagingMotivationPublic">(Honig 2022)</span>,
 and</li>
 <li>Giving implementers a wide degrees of discretion to navigate by
 judgement <span class="citation" data-cites="honig2018navigation">(Honig
@@ -199,11 +194,9 @@ communities.</li>
 log both sides of an equation to handle tricky exponents prior to
 differentiation (e.g. <span class="math inline">\(x^{ln(x)}\)</span>).
 <ul>
-<li><strong>General log differentiation</strong>: <span
-class="math inline">\(\dfrac{d}{dx}​log_b​(u(x))=\dfrac{u&#39;(x)}{ln(b)u(x)}​\)</span><br />
+<li><strong>General log differentiation</strong>: <span class="math inline">\(\dfrac{d}{dx}​log_b​(u(x))=\dfrac{u'(x)}{ln(b)u(x)}​\)</span><br/>
 </li>
-<li><strong>Natural log differentiation</strong>: <span
-class="math inline">\(\dfrac{d}{dx}\ln(u(x))=\dfrac{u&#39;(x)}{u(x)}\)</span></li>
+<li><strong>Natural log differentiation</strong>: <span class="math inline">\(\dfrac{d}{dx}\ln(u(x))=\dfrac{u'(x)}{u(x)}\)</span></li>
 </ul></li>
 </ul>
 <h3 id="implicit-differentiation">Implicit differentiation</h3>
@@ -213,20 +206,15 @@ be expressed as a function of one another, but there is a relationship
 via an equation (e.g. <span class="math inline">\(x^2+y^2=1\)</span>).
 Typically, this requires the chain rule to solve without isolating one
 variable and substituting. </li></ul>
-
-
 <h3 id="acceleration_velocity">Acceleration + velocity</h3>
 <ul><li><p>Velocity is the first derivative of position, while acceleration
 is the second.</p>
 <ul>
 <li>Velocity <span class="math inline">\((v)\)</span> is the derivative
 of position <span class="math inline">\((s)\)</span> with respect to
-time <span class="math inline">\((t)\)</span>: <span
-class="math display">\[v(t) = \frac{ds}{dt}\]</span></li>
+time <span class="math inline">\((t)\)</span>: <span class="math display">\[v(t) = \frac{ds}{dt}\]</span></li>
 <li>Acceleration <span class="math inline">\((a)\)</span> is the
-derivative of velocity (so <span
-class="math inline">\(d^2s/dt^2\)</span>): <span
-class="math display">\[a(t) = \frac{dv}{dt} =
+derivative of velocity (so <span class="math inline">\(d^2s/dt^2\)</span>): <span class="math display">\[a(t) = \frac{dv}{dt} =
 \frac{d^2s}{dt^2}\]</span></li>
 </ul></li>
 </ul>
@@ -236,26 +224,22 @@ class="math display">\[a(t) = \frac{dv}{dt} =
 function to the <em>product</em> of the derivative at that point plus
 the distance between x (the new point) and (the independent variable at
 point of tangency). <span class="math display">\[L(x) = h(a) +
-h&#39;(a)(x-a)\]</span></li>
+h'(a)(x-a)\]</span></li>
 </ul>
-<hr />
-<div id="refs" class="references csl-bib-body hanging-indent"
-data-entry-spacing="0" role="list">
-<div id="ref-honig2018navigation" class="csl-entry" role="listitem">
+<hr/>
+<div class="references csl-bib-body hanging-indent" data-entry-spacing="0" id="refs" role="list">
+<div class="csl-entry" id="ref-honig2018navigation" role="listitem">
 Honig, Dan. 2018. <em>Navigation by Judgment: <span>Why</span> and When
 Top-down Management of Foreign Aid Doesn’t Work</em>. Oxford University
 Press.
 </div>
-<div id="ref-Honig_2022_ManagingMotivationPublic" class="csl-entry"
-role="listitem">
+<div class="csl-entry" id="ref-Honig_2022_ManagingMotivationPublic" role="listitem">
 ———. 2022. <span>“Managing for <span>Motivation</span> as <span>Public
 Performance Improvement Strategy</span> in <span>Education</span> &amp;
 <span>Far Beyond</span>.”</span> Research on Improving Systems of
-Education (RISE). <a
-href="https://doi.org/10.35489/BSG-RISE-Misc_2022/04">https://doi.org/10.35489/BSG-RISE-Misc_2022/04</a>.
+Education (RISE). <a href="https://doi.org/10.35489/BSG-RISE-Misc_2022/04">https://doi.org/10.35489/BSG-RISE-Misc_2022/04</a>.
 </div>
-<div id="ref-Kuhn_1996_StructureScientificRevolutions" class="csl-entry"
-role="listitem">
+<div class="csl-entry" id="ref-Kuhn_1996_StructureScientificRevolutions" role="listitem">
 Kuhn, Thomas S. 1996. <em>The Structure of Scientific Revolutions</em>.
 3rd ed. Chicago, IL: University of Chicago Press.
 </div>

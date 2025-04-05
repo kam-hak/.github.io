@@ -1,4 +1,4 @@
-# Tech's impact on democracy, legitimacy in systems, Ganz and perils of funding movements, misc tech review
+# TOCOPY
 
 ## Research / Theory
 
@@ -36,18 +36,118 @@
 	- Legitimacy by **fairness**: something can become legitimate because it satisfies an intuitive notion of fairness. See also: my post on credible neutrality, though note that this is not the only kind of fairness.
 	- Legitimacy by process: if a process is legitimate, the outputs of that process gain legitimacy (eg. laws passed by democracies are **sometimes** described in this way).
 	- Legitimacy by performance: if the outputs of a process lead to results that satisfy people, then that process can gain legitimacy (eg. successful dictatorships are sometimes described in this way).
-	- Legitimacy by **participation**: if people participate in choosing an outcome, they are more likely to consider it legitimate. This is similar to fairness, but not quite: it rests on a psychological desire to be consistent with your previous actions."
+	- Legitimacy by **participation**: if people participate in choosing an outcome, they are more likely to consider it legitimate. This is similar to fairness, but not quite: it rests on a psychological desire to be consistent with your previous actions."  
+	
 ### Funding has pernicious effects on movements
 
 - [Marshall Ganz](https://www.youtube.com/watch?v=aAWSjyMI9Kc) argues that funding has robbed movements of their ability to attract a constituency. 
 	- Funding end-runs the requirement to build organizing capacity. 
 	- Mobilizing large groups of people, assuming money, is not difficult. However, this is not through the *organizations* capacity, and it is fundamentally not relational.
-	- Ganz views civil society as at a nadir point in US history
+	- Ganz views civil society as at a nadir point in US history. 
+	- Civil society has become dependent on *donor* funding, rather than *organizing the public*
+	- Note: The ability of one-to-many technology (social media) in mobilizing networks without organizational infrastructure or infrastructure may be driving this. Is civil society falling to [McLuhan's law](https://substack.com/home/post/p-160008408?utm_campaign=post&utm_medium=web) (medium is the message). 
 
 
 ## Tooling
 ### Quick python syntax review
 
 #### Looping
-- python can implement looping in many ways:
+- python can implement looping in many ways:  
+
 ```python
+# for i in [...]
+for i in [0, 1, 2, 3]: # this list is by item, and can be any datatype (i.e. strs are ok)
+	# {do...}
+
+# can also use range[int], which evenly distributes across the range.
+# While not needed, np.arrange(from, to, increment size) allows for incrementing floats.
+for i in range(3): # this will go 0-3, though two int arguments will start/stop at those values
+	# {do...}
+
+# while loops with an 'i'
+i = 0
+while i < 10:
+	# {do...}
+```
+
+- Python loops have a number of advanced properties:  
+
+```python
+
+while True: # loops infinitely, requiring a break condition
+	best_game = input("What is the best strategy game? ")
+	if "starcraft" in best_game.lower():
+		print("correct! ^_^")
+		break # only stops prompting if starcraft is in answer.
+
+```
+
+- When looping over a string, python *can* loop over individual characters:  
+
+```python
+
+text= "IPSO FACT?"
+for c in text:
+	c_lower += c.lower() # += automatically concatenates strings. 
+print(c_lower)
+
+# more efficiently, you can use str.join
+[c,lower() for c in text] # this is a list comprehension
+# OR
+(c,lower() for c in text) # this is a generator expression
+
+```
+
+#### Debugging 
+
+- Python natively includes 'try', where you can specify a piece of code  to attempt and modify the output on failure:  
+
+```python
+
+try:
+	num1 = int(input("integer to add #1: "))
+	num2 = int(input("integer to add #2: "))
+except ValueError
+	print("... not an integer...")
+
+```
+
+### SQLite review
+
+- SQL databases are .db
+	- to import a csv, use .csv mode (`.mode csv >> .import {file}.csv {file}`)
+	- .schema -- this is similar to `df.info()` and `df.describe` in python's pandas or `str(df)` in base R and `glimpse(df)` for tidyverse
+- Basic commands:
+	- `SELECT {data} FROM {data object}; `
+		- selects specified data from an object, can heavily modify intermediately
+	- `WHERE {variable} {logical condition}`
+		- This selects based on a 
+	- GROUP BY {variable};
+		- Partitions based on unique values in a column BEFORE applying aggregating functions
+		- `HAVING` applies filtering based on the GROUP BY function. WHERE, in contrast, only applies *before* aggregation
+	- `CAST({data} AS {NEW_TYPE}); `
+		- recasts type
+	- `ROUND({data}, {#decimal places}); `
+		- rounds
+	- `CASE WHEN "{variable}" {logical statement} THEN {DO} ELSE {ALT DO} END;`
+		- conditional statements, add a `+` at the end to add more conditional DO statements
+	- `LIKE` is akin to regex searching, where we look for pattern matching especially in WHERE. `%` matches any number of characters, and `_` is a wildcard. These can be mixed, for instance, you can specify any character, followed by obb and any ending as `SELECT * from people WHERE name LIKE '_obb%'`, which 
+- Linking tables:
+	- Linking tables is often more efficient than merging them.
+	- SQL supports primary and foreign id.
+	- The foreign id links to another table, while the primary is for that table.
+	- The use of ids is to limit size in memory (ids are integers, not strings). Referencing relates in modular calls.
+	- These can be nested so you have a pointer going 'traversing' multiple layers (a.item where id = b.a_id, where b.id = c.b_id... etc.). 
+- Indexing for faster searches
+	- SQL allows for creation of an Index (`CREATE INDEX foo ON fie`)
+	- This is a b-tree, not a dictionary. SQL generally does not support dictionary lookup.
+	- Limits the time to go from the 'top' of the tree to 'bottom' leaf row.
+
+### Internet plumbing
+
+- Internet Protocol (IP): a 4 or 6 part address for a server. There is a sender and receiver among the metadata. These are passed between 'hops'
+- TCP (Transmission Control Protocol) is a protocol which add information about the source port and destination port (e.g. 443 is the port for https, others for pop3 email etc.)
+- DNS (Domain Name Service) converts domain name (google.com) to an IP. Your computer will query DNS server(s) to retrieve the IP of a domain name you request. Once it knows, it uses TCP/IP to communicate.
+- DHCP (Dynamic Host Configuration Protocol) is how your computer ...
+	- 'gets' its IP address assigned if it has not been used for some amount of time. Necessary bc manual IP is not scalable. 
+	- 'gets' its best DNS server to contact as a 'default gateway' or router
