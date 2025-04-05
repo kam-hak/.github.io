@@ -1,0 +1,62 @@
+name: Deploy Website to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js for Viz
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18 # Or your required version
+          cache: "npm"
+          cache-dependency-path: ./pop_regime_viz/package-lock.json # Path to lock file
+
+      - name: Install and Build Viz
+        working-directory: ./pop_regime_viz # Path to your viz project
+        run: |
+          npm ci
+          npm run build # Assumes vite.config.js has base: '/pop_regime_viz/'
+
+      - name: Setup Pages Artifact Structure
+        run: |
+          mkdir _site # Create a staging directory for the artifact
+          # Copy all non-viz files/folders from repo root to _site
+          shopt -s extglob dotglob # Enable extended globbing and dot files
+          cp -r !(pop_regime_viz|_site) _site/
+          shopt -u extglob dotglob # Disable globbing options
+          # Copy the built viz application into the correct subfolder in _site
+          mkdir -p _site/pop_regime_viz # Ensure target directory exists
+          cp -r ./pop_regime_viz/dist/* _site/pop_regime_viz/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site # Upload the structured site
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
