@@ -8,10 +8,17 @@ body {
     max-width: 800px; /* Restricts the maximum width of the content */
 }
 
-/* Styling for the links */
 a {
-    color: #0000EE;  /* Classic blue link color */
-    text-decoration: underline;  /* Underline links, like in early web design */
+  color: #0000EE;
+  text-decoration: underline;
+  text-decoration-color: #0000EE;
+  text-decoration-thickness: .5px;
+  transition: text-decoration-color 0.2s ease;
+}
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: #0000EE;
+  text-decoration-thickness: 2px;
 }
 
 /* Header styling */
@@ -42,21 +49,25 @@ main {
 
 /* Paragraph styling */
 p {
-    line-height: 1.1;  /* Spacing between lines for readability */
+    line-height: 1;  /* Spacing between lines for readability */
 }
 
-/* Styling for unordered lists */
-ul {
-    padding-left: 1.2em; /* Space for the custom bullet */
-    margin-left: 0; /* Reset left margin */
-    max-width: 800px; /* Restricts maximum width for better wrapping */
+ul,
+ol {
+  margin-left: 0;             /* reset default */
+  padding-left: 1.2em;        /* space for bullet or number */
+  max-width: 800px;           /* restrict width for wrapping */
+  line-height: 1.1;           /* looser line spacing */
 }
 
-/* Styling for list items with custom bullets */
-ul li {
-    position: relative; /* Establish positioning context */
-    padding-left: 1.2em; /* Space for the custom bullet */
-    text-indent: -1.2em; /* Negative indent to align wrapped lines */
-    margin-bottom: 0.1em; /* Space between list items */
-    line-height: 1; /* Improves readability */
+ul li,
+ol li {
+  position: relative;         /* positioning context */
+  padding-left: 1.2em;        /* space for bullet or number */
+  text-indent: -1.2em;        /* align wrapped lines */
+  margin-bottom: 0.1em;       /* gap between items */
+}
+
+li + li {
+  margin-top: 0.3em;          /* extra space before each item */
 }
