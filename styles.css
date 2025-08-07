@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&display=swap');
+
 /* Base styling for the website */
 body {
-    font-family: "Times New Roman", serif;  /* Classic serif font for a retro feel */
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;  /* Variable serif with classic tone */
     background-color: #ffffff;  /* White background */
     color: #000000;  /* Black text for strong contrast */
     margin: 1.5rem;  /* Consistent spacing unit */
-    padding: 0;
-    max-width: 800px; /* Restricts the maximum width of the content */
+    padding: 0 1.5rem;
+    max-width: 65ch; /* Restricts the maximum width of the content */
     font-size: 16px;  /* Explicit base font size */
 }
 
@@ -25,7 +27,7 @@ a:hover {
 /* Header styling */
 header {
     margin-bottom: 1.5rem;  /* Consistent spacing unit */
-    max-width: 800px; /* Restricts the maximum width of the header */
+    max-width: 65ch; /* Restricts the maximum width of the header */
 }
 
 /* Typographic Scale - Each level is ~1.25x the previous */
@@ -84,14 +86,14 @@ h6 {
 /* Section styling */
 section {
     margin-bottom: 1.5rem;  /* Consistent spacing unit */
-    max-width: 800px; /* Restricts the maximum width of sections */
+    max-width: 65ch; /* Restricts the maximum width of sections */
 }
 
 main {
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
-    max-width: 800px; /* Centers the main content area */
+    max-width: 65ch; /* Centers the main content area */
 }
 
 /* Paragraph styling */
@@ -106,7 +108,7 @@ ol {
   margin-left: 0;
   margin-bottom: 1rem;        /* consistent with paragraph spacing */
   padding-left: 1.5rem;       /* space for bullet or number */
-  max-width: 800px;
+  max-width: 65ch;
   line-height: 1.4;           /* match paragraph line height */
 }
 

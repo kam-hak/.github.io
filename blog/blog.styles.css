@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&display=swap');
+
+.til-list {               /* remove bullets + reset */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .til-list li {            /* vertical rhythm */
+    margin-block: 1rem;
+  }
+  
+  .til-list time {          /* date “bullet” */
+    font: 0.875rem/1 "Newsreader", Georgia, serif;
+    font-weight: 700;       /* bold but small */
+    color: #000;            /* quiet black */
+    white-space: nowrap;
+  }
+  
+  .til-title {              /* headline link */
+    font-weight: 400;
+    color: #000;            /* black, not blue */
+    text-decoration: none;  /* no underline until hover */
+    /* border-bottom: 1px solid #00006B; */
+    transition: border-color 0.2s;
+  }
+  .til-title:hover {        /* subtle affordance */
+    border-bottom-color: #00006B;
+    border-bottom-width: 1px;
+  }
+  
+  .til-excerpt {            /* (future) one-line teaser */
+    margin: 0.25rem 0 0;
+    color: #333;
+    max-width: 60ch;
+  }
