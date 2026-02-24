@@ -105,32 +105,46 @@
         }
 
         async function run() {
-            let files;
+            let data;
             try {
-                const res = await fetch('images.json');
-                files = await res.json();
+                const res = await fetch('image_widths_heights.json');
+                if (res.status === 404) throw new Error('not found');
+                data = await res.json();
             } catch {
-                status.textContent = 'add images to vibes/ and list them in images.json';
+                status.textContent = 'run lister.py to generate image_widths_heights.json';
                 return;
             }
 
-            if (!files.length) {
-                status.textContent = 'no images yet — add filenames to images.json';
+            if (!data.length) {
+                status.textContent = 'no images yet — add images and run lister.py';
                 return;
             }
 
             status.style.display = 'none';
-            const shuffled = shuffle([...files]);
-            let i = 0;
+            const shuffled = shuffle([...data]);
+            const screenW = window.innerWidth;
 
+            const pairs = shuffled.map(([, [w, h]]) => {
+                const goal = 500 * 300;
+                const actual = w * h;
+                if (actual / goal > 16) return [Math.floor(w / 8), Math.floor(h / 8)];
+                if (actual / goal > 4)  return [Math.floor(w / 4), Math.floor(h / 4)];
+                return [Math.floor(w / 2), Math.floor(h / 2)];
+            }).map(([w, h]) => [w + 10 > screenW ? screenW - 10 : w, h]);
+
+            let i = 0;
             function next() {
                 if (i >= shuffled.length) return;
-                const filename = shuffled[i++];
+                const [filename] = shuffled[i];
+                const [w, h] = pairs[i];
+                i++;
 
                 const img = document.createElement('img');
                 img.className = 'gallery-img';
                 img.loading = 'lazy';
                 img.alt = '';
+                img.style.width  = w + 'px';
+                img.style.height = h + 'px';
                 img.onload = () => { place(img); setTimeout(next, 100); };
                 img.onerror = () => setTimeout(next, 100);
                 gallery.appendChild(img);
