@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vibes — Kamran Hakiman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Newsreader", Georgia, "Times New Roman", serif;
+        }
+
+        #nav {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            font-size: 0.9rem;
+        }
+
+        #nav a {
+            color: #0000EE;
+            text-decoration: underline;
+            text-decoration-thickness: 0.5px;
+        }
+
+        #nav a:hover {
+            text-decoration-thickness: 2px;
+        }
+
+        #gallery {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-img {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-img.loaded {
+            opacity: 1;
+        }
+
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="nav"><a href="/">← back</a></div>
+    <div id="gallery"></div>
+    <div id="loading">loading...</div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const loadingEl = document.getElementById('loading');
+
+        // pixel ratio for scaling
+        const dpr = window.devicePixelRatio || 1;
+
+        function scaleSize(w, h) {
+            let scale = 1;
+            if (dpr >= 3) scale = 1/4;
+            else if (dpr >= 2) scale = 1/2;
+            // cap max display size
+            const maxW = window.innerWidth * 0.35;
+            const maxH = window.innerHeight * 0.35;
+            if (w * scale > maxW) scale = maxW / w;
+            if (h * scale > maxH) scale = maxH / h;
+            return { w: Math.floor(w * scale), h: Math.floor(h * scale) };
+        }
+
+        // collect bounding boxes of placed images
+        const placed = [];
+
+        function overlaps(rect) {
+            for (const r of placed) {
+                if (
+                    rect.x < r.x + r.w &&
+                    rect.x + rect.w > r.x &&
+                    rect.y < r.y + r.h &&
+                    rect.y + rect.h > r.y
+                ) return true;
+            }
+            return false;
+        }
+
+        function placeImage(imgEl, dispW, dispH) {
+            const margin = 8;
+            let availW = window.innerWidth;
+            let availH = window.innerHeight;
+            let attempts = 0;
+
+            while (true) {
+                const x = Math.floor(Math.random() * (availW - dispW - margin * 2)) + margin;
+                const y = Math.floor(Math.random() * (availH - dispH - margin * 2)) + margin;
+                const rect = { x, y, w: dispW, h: dispH };
+
+                if (!overlaps(rect)) {
+                    placed.push(rect);
+                    imgEl.style.left = x + 'px';
+                    imgEl.style.top = y + 'px';
+                    return;
+                }
+
+                attempts++;
+                if (attempts >= 50) {
+                    // expand available area and retry
+                    availW = Math.min(availW + 100, window.innerWidth * 1.5);
+                    availH = Math.min(availH + 100, window.innerHeight * 1.5);
+                    attempts = 0;
+                }
+            }
+        }
+
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        async function loadGallery() {
+            let data;
+            try {
+                const res = await fetch('image_widths_heights.json');
+                data = await res.json();
+            } catch (e) {
+                loadingEl.textContent = 'no images yet — add some and run lister.py';
+                return;
+            }
+
+            const entries = shuffle(Object.entries(data));
+
+            if (entries.length === 0) {
+                loadingEl.textContent = 'no images yet — add some and run lister.py';
+                return;
+            }
+
+            loadingEl.style.display = 'none';
+
+            let i = 0;
+            function addNext() {
+                if (i >= entries.length) return;
+                const [filename, dims] = entries[i++];
+                const { w: dispW, h: dispH } = scaleSize(dims.width, dims.height);
+
+                const img = document.createElement('img');
+                img.className = 'gallery-img';
+                img.style.width = dispW + 'px';
+                img.style.height = dispH + 'px';
+                img.loading = 'lazy';
+                img.alt = '';
+
+                placeImage(img, dispW, dispH);
+                gallery.appendChild(img);
+
+                img.onload = () => img.classList.add('loaded');
+                img.src = filename;
+
+                setTimeout(addNext, 100);
+            }
+
+            addNext();
+        }
+
+        loadGallery();
+    </script>
+</body>
+</html>
