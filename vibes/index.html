@@ -9,9 +9,6 @@
 
         body {
             background-color: #ffffff;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
             font-family: "Newsreader", Georgia, "Times New Roman", serif;
         }
 
@@ -29,16 +26,7 @@
         }
         #nav a:hover { text-decoration-thickness: 2px; }
 
-        #gallery { position: relative; width: 100%; height: 100%; }
-
-        .gallery-img {
-            position: absolute;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            max-width: 35vw;
-            max-height: 35vh;
-        }
-        .gallery-img.visible { opacity: 1; }
+        #container { position: relative; }
 
         #status {
             position: fixed;
@@ -54,107 +42,139 @@
 </head>
 <body>
     <div id="nav"><a href="/">← back</a></div>
-    <div id="gallery"></div>
+    <div id="container"></div>
     <div id="status">loading...</div>
 
     <script>
-        const gallery = document.getElementById('gallery');
-        const status  = document.getElementById('status');
-        const placed  = [];
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
-        function overlaps(x, y, w, h) {
-            for (const r of placed) {
-                if (x < r.x + r.w && x + w > r.x &&
-                    y < r.y + r.h && y + h > r.y) return true;
-            }
-            return false;
+fetch("image_widths_heights.json").then(f => {
+    if (f.status == 404) {
+        document.getElementById('status').textContent =
+            'run lister.py to generate image_widths_heights.json';
+        throw new Error("not found");
+    }
+    return f.json();
+}).then(data => {
+    if (!data.length) {
+        document.getElementById('status').textContent =
+            'no images yet — add images and run lister.py';
+        return;
+    }
+
+    document.getElementById('status').style.display = 'none';
+
+    let key_values = shuffleArray(data);
+
+    const rect = container.getBoundingClientRect();
+    let screen_width = rect.width;
+
+    // Resize images to be approximately a similar size.
+    // To adjust image size, change goal_pixels here.
+    const pairs = key_values.map(([key, [w, h]]) => {
+        let goal_pixels = 500*300;
+        let actual_pixels = w*h;
+        if (actual_pixels/goal_pixels > 16) {
+            return [parseInt(w/8), parseInt(h/8)];
         }
+        if (actual_pixels/goal_pixels > 4) {
+            return [parseInt(w/4), parseInt(h/4)];
+        }
+        return [parseInt(w/2), parseInt(h/2)];
+    }).map(([w, h]) => [(w+10) > screen_width ? screen_width-10 : w, h]);
 
-        function place(img) {
-            const w = img.offsetWidth;
-            const h = img.offsetHeight;
-            const pad = 8;
-            let availW = window.innerWidth;
-            let availH = window.innerHeight;
-            let tries = 0;
+    // gather all the text nodes so the images don't intersect them
+    const textNodes = [];
+    const treeWalker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        { acceptNode: (node) => node.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT }
+    );
+    while(treeWalker.nextNode()) textNodes.push(treeWalker.currentNode);
 
-            while (true) {
-                const x = pad + Math.random() * (availW - w - pad * 2);
-                const y = pad + Math.random() * (availH - h - pad * 2);
-                if (!overlaps(x, y, w, h)) {
-                    placed.push({ x, y, w, h });
-                    img.style.left = x + 'px';
-                    img.style.top  = y + 'px';
-                    img.classList.add('visible');
-                    return;
+    // For each image, attempt to place it in a random location up to height 600.
+    // If it intersects with any other images, try again. If after 50 attempts
+    // we don't manage to place it, increase the height by 50.
+    let positions = [];
+    let i = 0;
+
+    let interval = setInterval(() => {
+        let height = 600;
+        let [w, h] = pairs[i];
+        while (1) {
+            let found_place = false;
+            let w_max = screen_width-w;
+            let h_max = height-h;
+            for (let _ = 0; _ < 50; _++) {
+                let a_left = Math.random() * w_max;
+                let a_top = Math.random() * h_max;
+                let a_right = a_left+w;
+                let a_bottom = a_top+h;
+
+                // do intersection checks against images
+                let intersects = false;
+                for (let j = 0; j < positions.length; j++) {
+                    let [b_left, b_top] = positions[j];
+                    let b_right = b_left + pairs[j][0];
+                    let b_bottom = b_top + pairs[j][1];
+                    if (a_left < b_right && a_right > b_left && a_bottom > b_top && a_top < b_bottom) {
+                        intersects = true;
+                        break;
+                    }
                 }
-                if (++tries >= 50) {
-                    availW = Math.min(availW + 120, window.innerWidth * 1.5);
-                    availH = Math.min(availH + 120, window.innerHeight * 1.5);
-                    tries = 0;
+
+                // do intersection checks against text
+                for (const node of textNodes) {
+                    const range = document.createRange();
+                    range.selectNodeContents(node);
+                    const rect = range.getBoundingClientRect();
+                    let node_top = rect.top + window.pageYOffset;
+                    let node_left = rect.left + window.pageXOffset;
+
+                    if (a_left < (node_left+rect.width) && a_right > node_left && a_bottom > node_top && a_top < (node_top+rect.height)) {
+                        intersects = true;
+                        break;
+                    }
+                }
+
+                if (!intersects) {
+                    found_place = true;
+                    positions.push([parseInt(a_left), parseInt(a_top)]);
+                    break;
                 }
             }
+            if (found_place) {
+                break;
+            } else {
+                height += 50;
+            }
         }
 
-        function shuffle(arr) {
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
+        // Create the image
+        let img = document.createElement("img");
+        img.src = key_values[i][0];
+        img.width = pairs[i][0];
+        img.height = pairs[i][1];
+        img.style.width = pairs[i][0] + "px";
+        img.style.height = pairs[i][1] + "px";
+        img.style.position = "absolute";
+        img.style.top = positions[i][1] + "px";
+        img.style.left = positions[i][0] + "px";
+        img.loading = "lazy";
+        container.appendChild(img);
+
+        i++;
+        if (i == key_values.length) {
+            clearInterval(interval);
         }
-
-        async function run() {
-            let data;
-            try {
-                const res = await fetch('image_widths_heights.json');
-                if (res.status === 404) throw new Error('not found');
-                data = await res.json();
-            } catch {
-                status.textContent = 'run lister.py to generate image_widths_heights.json';
-                return;
-            }
-
-            if (!data.length) {
-                status.textContent = 'no images yet — add images and run lister.py';
-                return;
-            }
-
-            status.style.display = 'none';
-            const shuffled = shuffle([...data]);
-            const screenW = window.innerWidth;
-
-            const pairs = shuffled.map(([, [w, h]]) => {
-                const goal = 500 * 300;
-                const actual = w * h;
-                if (actual / goal > 16) return [Math.floor(w / 8), Math.floor(h / 8)];
-                if (actual / goal > 4)  return [Math.floor(w / 4), Math.floor(h / 4)];
-                return [Math.floor(w / 2), Math.floor(h / 2)];
-            }).map(([w, h]) => [w + 10 > screenW ? screenW - 10 : w, h]);
-
-            let i = 0;
-            function next() {
-                if (i >= shuffled.length) return;
-                const [filename] = shuffled[i];
-                const [w, h] = pairs[i];
-                i++;
-
-                const img = document.createElement('img');
-                img.className = 'gallery-img';
-                img.loading = 'lazy';
-                img.alt = '';
-                img.style.width  = w + 'px';
-                img.style.height = h + 'px';
-                img.onload = () => { place(img); setTimeout(next, 100); };
-                img.onerror = () => setTimeout(next, 100);
-                gallery.appendChild(img);
-                img.src = filename;
-            }
-
-            next();
-        }
-
-        run();
+    }, 100);
+});
     </script>
 </body>
 </html>
