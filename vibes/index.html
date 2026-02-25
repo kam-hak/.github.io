@@ -81,13 +81,18 @@ fetch("image_widths_heights.json").then(f => {
     const containerOffsetTop = rect.top + window.pageYOffset;
     const containerOffsetLeft = rect.left + window.pageXOffset;
 
-    // Resize images proportionally to a target pixel area.
-    // Smaller goal on narrow screens so images scatter horizontally.
-    const goal_pixels = screen_width < 600 ? 200*150 : 500*300;
+    // Resize images to be approximately a similar size.
+    // To adjust image size, change goal_pixels here.
     const pairs = key_values.map(([key, [w, h]]) => {
+        let goal_pixels = 500*300;
         let actual_pixels = w*h;
-        let scale = Math.min(1, Math.sqrt(goal_pixels / actual_pixels));
-        return [Math.max(1, parseInt(w * scale)), Math.max(1, parseInt(h * scale))];
+        if (actual_pixels/goal_pixels > 16) {
+            return [parseInt(w/8), parseInt(h/8)];
+        }
+        if (actual_pixels/goal_pixels > 4) {
+            return [parseInt(w/4), parseInt(h/4)];
+        }
+        return [parseInt(w/2), parseInt(h/2)];
     }).map(([w, h]) => [(w+10) > screen_width ? screen_width-10 : w, h]);
 
     // gather all the text nodes so the images don't intersect them
