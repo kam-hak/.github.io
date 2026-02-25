@@ -10,7 +10,7 @@
         body {
             background-color: #ffffff;
             font-family: "Newsreader", Georgia, "Times New Roman", serif;
-            padding: 3rem 1rem 0 1rem;
+            padding: 2rem 1rem 0 1rem;
         }
 
         #nav {
@@ -78,6 +78,8 @@ fetch("image_widths_heights.json").then(f => {
 
     const rect = container.getBoundingClientRect();
     let screen_width = rect.width;
+    const containerOffsetTop = rect.top + window.pageYOffset;
+    const containerOffsetLeft = rect.left + window.pageXOffset;
 
     // Resize images to be approximately a similar size.
     // To adjust image size, change goal_pixels here.
@@ -138,8 +140,8 @@ fetch("image_widths_heights.json").then(f => {
                     const range = document.createRange();
                     range.selectNodeContents(node);
                     const rect = range.getBoundingClientRect();
-                    let node_top = rect.top + window.pageYOffset;
-                    let node_left = rect.left + window.pageXOffset;
+                    let node_top = rect.top + window.pageYOffset - containerOffsetTop;
+                    let node_left = rect.left + window.pageXOffset - containerOffsetLeft;
 
                     if (a_left < (node_left+rect.width) && a_right > node_left && a_bottom > node_top && a_top < (node_top+rect.height)) {
                         intersects = true;
