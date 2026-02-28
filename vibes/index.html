@@ -81,19 +81,24 @@ fetch("image_widths_heights.json").then(f => {
     const containerOffsetTop = rect.top + window.pageYOffset;
     const containerOffsetLeft = rect.left + window.pageXOffset;
 
-    // Resize images to be approximately a similar size.
-    // To adjust image size, change goal_pixels here.
+    // Resize images to be approximately a similar size using a smooth scale
+    // instead of abrupt bucket cutoffs, while preserving the old /8 floor
+    // for very large source images.
     const pairs = key_values.map(([key, [w, h]]) => {
-        let goal_pixels = 500*300;
-        let actual_pixels = w*h;
-        if (actual_pixels/goal_pixels > 16) {
-            return [parseInt(w/8), parseInt(h/8)];
+        const target_pixels = 85000;
+        const actual_pixels = w*h;
+        const scale = Math.sqrt(target_pixels / actual_pixels);
+        const clampedScale = Math.max(0.125, Math.min(0.5, scale));
+        return [Math.round(w * clampedScale), Math.round(h * clampedScale)];
+    }).map(([w, h]) => {
+        const maxWidth = screen_width - 10;
+        if ((w + 10) <= screen_width) {
+            return [w, h];
         }
-        if (actual_pixels/goal_pixels > 4) {
-            return [parseInt(w/4), parseInt(h/4)];
-        }
-        return [parseInt(w/2), parseInt(h/2)];
-    }).map(([w, h]) => [(w+10) > screen_width ? screen_width-10 : w, h]);
+
+        const widthScale = maxWidth / w;
+        return [Math.round(w * widthScale), Math.round(h * widthScale)];
+    });
 
     // gather all the text nodes so the images don't intersect them
     const textNodes = [];
