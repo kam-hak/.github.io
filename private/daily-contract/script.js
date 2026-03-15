@@ -189,6 +189,7 @@ function levelForCount(n) {
 }
 
 function buildHeatmap(currentDate, entryMap) {
+  if (!heatmapGridEl) return;
   heatmapGridEl.innerHTML = "";
   const end = parseDate(currentDate) || new Date();
   const start = new Date(end);
@@ -209,6 +210,7 @@ function buildHeatmap(currentDate, entryMap) {
 }
 
 function buildConsistencyStats(entries, currentDate) {
+  if (!consistencySummaryEl || !heatmapGridEl) return;
   consistencySummaryEl.textContent = "";
   if (!entries.length) {
     consistencySummaryEl.textContent = "No contract history yet.";
@@ -362,6 +364,7 @@ async function loadContract() {
 }
 
 async function loadHistory(currentDate) {
+  if (!previousDaysEl) return;
   previousDaysEl.innerHTML = "";
   const res = await fetch(HISTORY_URL, { cache: "no-store" });
   if (!res.ok) {
