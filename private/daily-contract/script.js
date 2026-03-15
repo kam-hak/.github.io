@@ -1,4 +1,4 @@
-const PASSWORD_SHA256_HEX = "REPLACE_WITH_SHA256_HEX";
+const PASSWORD_SHA256_HEX = "d39d744b1a714c2ebe2fc72da7ead6e44fe17d48a031a3234495dd478c461d62";
 const CONTRACT_URL = "./contract.json";
 const HISTORY_URL = "./history.json";
 
