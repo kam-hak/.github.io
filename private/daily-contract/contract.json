@@ -1,0 +1,23 @@
+{
+  "date": "2026-03-15",
+  "owner": "Kamran",
+  "current_pull": {
+    "title": "Submit Thailand reimbursement packet",
+    "checklist": [
+      "Gather flight, in-country flights, Airbnb, and visa receipts",
+      "Upload packet on Pitt reimbursement portal",
+      "Capture confirmation reference in ops notes"
+    ]
+  },
+  "allowed_switches": [
+    "Hard external deadline inside 24 hours",
+    "Current pull is blocked by missing required external input",
+    "Emergency family/health interruption"
+  ],
+  "parking_lot": [
+    "Thailand research visa application",
+    "Session 4 slide cleanup",
+    "Dissertation coding block"
+  ],
+  "notes": "Single active pull only. Everything else stays parked until you explicitly re-decide."
+}

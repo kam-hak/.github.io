@@ -1,0 +1,22 @@
+{
+  "date": "2026-03-14",
+  "owner": "Kamran",
+  "current_pull": {
+    "title": "Prepare Session 4 teaching block",
+    "checklist": [
+      "Review transcript and identify low-participation students",
+      "Batch-grade responses",
+      "Decide final assignment prompt shape"
+    ]
+  },
+  "allowed_switches": [
+    "Hard external deadline inside 24 hours",
+    "Current pull blocked by required external response"
+  ],
+  "parking_lot": [
+    "Thailand reimbursement packet",
+    "Dissertation coding pass",
+    "Naw-Ruz MC prep"
+  ],
+  "notes": "Worked as a single current pull day."
+}
