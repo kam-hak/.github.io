@@ -139,6 +139,58 @@ input[type="password"] {
   text-decoration-thickness: 2px;
 }
 
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.heat-cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 3px;
+  border: 1px solid #d7e2da;
+  background: #eef3ef;
+}
+
+.heat-cell.level-0 {
+  background: #eef3ef;
+}
+
+.heat-cell.level-1 {
+  background: #d8eadf;
+}
+
+.heat-cell.level-2 {
+  background: #b8ddc5;
+}
+
+.heat-cell.level-3 {
+  background: #82bf99;
+}
+
+.heat-cell.level-4 {
+  background: #4f8a66;
+  border-color: #4f8a66;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid #d7e2da;
+}
+
 .checklist li {
   display: flex;
   align-items: start;

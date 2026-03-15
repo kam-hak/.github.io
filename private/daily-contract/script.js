@@ -17,6 +17,8 @@ const allowedSwitchesEl = document.getElementById("allowed-switches");
 const parkingLotEl = document.getElementById("parking-lot");
 const killedListEl = document.getElementById("killed-list");
 const previousDaysEl = document.getElementById("previous-days");
+const consistencySummaryEl = document.getElementById("consistency-summary");
+const heatmapGridEl = document.getElementById("heatmap-grid");
 const notesEl = document.getElementById("notes");
 
 let stateKey = null;
@@ -127,6 +129,124 @@ function buildPlainList(ul, items) {
   });
 }
 
+function parseDate(dateStr) {
+  const parts = dateStr.split("-").map(Number);
+  if (parts.length !== 3) return null;
+  const [y, m, d] = parts;
+  return new Date(y, m - 1, d);
+}
+
+function formatPct(numerator, denominator) {
+  if (!denominator) return "0%";
+  return `${Math.round((numerator / denominator) * 100)}%`;
+}
+
+function uniqueDates(entries) {
+  return Array.from(new Set(entries.map((e) => e.date))).sort();
+}
+
+function daysInMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+}
+
+function dayKey(dt) {
+  return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(
+    dt.getDate(),
+  ).padStart(2, "0")}`;
+}
+
+function getCheckedCountForDate(dateStr) {
+  try {
+    const checks = JSON.parse(localStorage.getItem(`dailyContractChecks:${dateStr}`) || "{}");
+    return Object.values(checks).filter(Boolean).length;
+  } catch {
+    return 0;
+  }
+}
+
+function getCheckedCountFromMetadata(entry) {
+  if (typeof entry.checked_off_count === "number") return entry.checked_off_count;
+  if (entry.metrics && typeof entry.metrics.checked_off_count === "number") {
+    return entry.metrics.checked_off_count;
+  }
+  return null;
+}
+
+function levelForCount(n) {
+  if (n <= 0) return 0;
+  if (n === 1) return 1;
+  if (n <= 3) return 2;
+  if (n <= 5) return 3;
+  return 4;
+}
+
+function buildHeatmap(currentDate, entryMap) {
+  heatmapGridEl.innerHTML = "";
+  const end = parseDate(currentDate) || new Date();
+  const start = new Date(end);
+  start.setDate(end.getDate() - 83);
+
+  for (let i = 0; i < 84; i += 1) {
+    const dt = new Date(start);
+    dt.setDate(start.getDate() + i);
+    const key = dayKey(dt);
+    const metaCount = entryMap.has(key) ? getCheckedCountFromMetadata(entryMap.get(key)) : null;
+    const count = metaCount == null ? getCheckedCountForDate(key) : metaCount;
+    const level = levelForCount(count);
+    const cell = document.createElement("div");
+    cell.className = `heat-cell level-${level}`;
+    cell.title = `${key}: ${count} checked off`;
+    heatmapGridEl.appendChild(cell);
+  }
+}
+
+function buildConsistencyStats(entries, currentDate) {
+  consistencySummaryEl.textContent = "";
+  if (!entries.length) {
+    consistencySummaryEl.textContent = "No contract history yet.";
+    buildHeatmap(currentDate, new Map());
+    return;
+  }
+
+  const dates = uniqueDates(entries);
+  const dateSet = new Set(dates);
+  const entryMap = new Map(entries.map((e) => [e.date, e]));
+  const now = parseDate(currentDate) || new Date();
+  const monthPrefix = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-`;
+  const monthCreated = dates.filter((d) => d.startsWith(monthPrefix)).length;
+  const monthTotal = daysInMonth(now);
+
+  let last14Created = 0;
+  for (let i = 0; i < 14; i += 1) {
+    const dt = new Date(now);
+    dt.setDate(now.getDate() - i);
+    const key = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(
+      dt.getDate(),
+    ).padStart(2, "0")}`;
+    if (dateSet.has(key)) last14Created += 1;
+  }
+
+  let streak = 0;
+  for (let i = 0; i < 400; i += 1) {
+    const dt = new Date(now);
+    dt.setDate(now.getDate() - i);
+    const key = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(
+      dt.getDate(),
+    ).padStart(2, "0")}`;
+    if (dateSet.has(key)) streak += 1;
+    else break;
+  }
+
+  consistencySummaryEl.textContent = `Created this month: ${monthCreated}/${monthTotal} (${formatPct(
+    monthCreated,
+    monthTotal,
+  )}) | Last 14 days: ${last14Created}/14 (${formatPct(
+    last14Created,
+    14,
+  )}) | Streak: ${streak} day${streak === 1 ? "" : "s"}`;
+  buildHeatmap(currentDate, entryMap);
+}
+
 function buildParkingList(items) {
   const killed = loadKilled();
   parkingLotEl.innerHTML = "";
@@ -225,6 +345,7 @@ async function loadHistory(currentDate) {
   }
   const history = await res.json();
   const entries = Array.isArray(history.contracts) ? history.contracts : [];
+  buildConsistencyStats(entries, currentDate);
   const filtered = entries.filter((e) => e.date !== currentDate);
   if (!filtered.length) {
     const li = document.createElement("li");
