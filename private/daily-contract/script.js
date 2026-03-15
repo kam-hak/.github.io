@@ -100,11 +100,15 @@ function saveKilled(items) {
 function buildChecklist(ul, items, checks, keyPrefix) {
   ul.innerHTML = "";
   (items || []).forEach((item, idx) => {
+    const id = `${keyPrefix}-${idx}`;
+    const isDone = !!checks[id];
+    if (keyPrefix === "pull" && isDone) {
+      return;
+    }
     const li = document.createElement("li");
     const cb = document.createElement("input");
     cb.type = "checkbox";
-    const id = `${keyPrefix}-${idx}`;
-    cb.checked = !!checks[id];
+    cb.checked = isDone;
     const label = document.createElement("label");
     label.textContent = item;
     if (cb.checked) label.classList.add("done");
@@ -112,6 +116,10 @@ function buildChecklist(ul, items, checks, keyPrefix) {
       const next = loadChecks();
       next[id] = cb.checked;
       saveChecks(next);
+      if (keyPrefix === "pull") {
+        loadContract();
+        return;
+      }
       label.classList.toggle("done", cb.checked);
     });
     li.appendChild(cb);
@@ -273,31 +281,51 @@ function buildParkingList(items) {
     });
 }
 
-function buildKilledList() {
+function buildKilledList(pullChecklistItems, checks) {
   const killed = loadKilled();
   killedListEl.innerHTML = "";
-  if (!killed.length) {
+  const donePullItems = (pullChecklistItems || []).filter((item, idx) => {
+    const id = `pull-${idx}`;
+    return !!checks[id];
+  });
+  const combined = [
+    ...donePullItems.map((item) => ({ text: item, source: "pull" })),
+    ...killed.map((item) => ({ text: item, source: "parking" })),
+  ];
+
+  if (!combined.length) {
     const li = document.createElement("li");
     li.className = "muted";
     li.textContent = "Nothing killed yet.";
     killedListEl.appendChild(li);
     return;
   }
-  killed.forEach((item) => {
+  combined.forEach((entry) => {
     const li = document.createElement("li");
     li.className = "killed";
     const text = document.createElement("span");
-    text.textContent = item;
+    text.textContent = entry.text;
     const undo = document.createElement("button");
     undo.type = "button";
     undo.className = "secondary tiny";
     undo.textContent = "Undo";
-    undo.addEventListener("click", () => {
-      const nextKilled = loadKilled().filter((x) => x !== item);
-      saveKilled(nextKilled);
-      buildKilledList();
-      loadContract();
-    });
+    if (entry.source === "pull") {
+      undo.addEventListener("click", () => {
+        const next = loadChecks();
+        const idx = (pullChecklistItems || []).indexOf(entry.text);
+        if (idx >= 0) {
+          next[`pull-${idx}`] = false;
+          saveChecks(next);
+        }
+        loadContract();
+      });
+    } else {
+      undo.addEventListener("click", () => {
+        const nextKilled = loadKilled().filter((x) => x !== entry.text);
+        saveKilled(nextKilled);
+        loadContract();
+      });
+    }
     li.appendChild(text);
     li.appendChild(undo);
     killedListEl.appendChild(li);
@@ -328,7 +356,7 @@ async function loadContract() {
   );
   buildPlainList(allowedSwitchesEl, contract.allowed_switches || []);
   buildParkingList(contract.parking_lot || []);
-  buildKilledList();
+  buildKilledList(contract.current_pull?.checklist || [], checks);
   notesEl.textContent = contract.notes || "";
   await loadHistory(contract.date || "");
 }
