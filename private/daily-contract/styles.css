@@ -1,0 +1,185 @@
+:root {
+  --bg: #f5f8f6;
+  --paper: #fffdf9;
+  --ink: #233127;
+  --muted: #6d7c72;
+  --accent: #4f8a66;
+  --line: #d8e3db;
+  --soft-mint: #eaf4ed;
+  --kill-bg: #f4f1f2;
+  --kill-ink: #7a7a7a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 0% 0%, #edf4ef 0%, transparent 45%),
+    radial-gradient(circle at 100% 100%, #f5efef 0%, transparent 45%),
+    var(--bg);
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+#current-pull-checklist {
+  background: var(--soft-mint);
+  border: 1px solid #cfe2d4;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+h1, h2 {
+  margin: 0 0 8px;
+  letter-spacing: 0.2px;
+}
+
+h1 {
+  font-size: 1.55rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.pull-title {
+  margin: 2px 0 10px;
+  font-size: 1.08rem;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+button {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+button.tiny {
+  padding: 3px 8px;
+  font-size: 0.86rem;
+}
+
+.gate-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+input[type="password"] {
+  font: inherit;
+  padding: 8px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.checklist,
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.plain-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.previous-days li {
+  justify-content: flex-start;
+}
+
+.history-link {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+}
+
+.history-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.checklist li {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+
+.checklist input[type="checkbox"] {
+  margin-top: 4px;
+}
+
+.done {
+  text-decoration: line-through 2px;
+  color: #2f7a50;
+  font-weight: 600;
+}
+
+.error {
+  color: #b00020;
+  min-height: 1.2em;
+}
+
+.hidden {
+  display: none;
+}
+
+.kill-card {
+  background: var(--kill-bg);
+  border-color: #ddd4d7;
+}
+
+.killed span {
+  color: var(--kill-ink);
+  text-decoration: line-through;
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 14px 10px 36px;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+  }
+}

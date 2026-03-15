@@ -1,0 +1,12 @@
+{
+  "contracts": [
+    {
+      "date": "2026-03-15",
+      "file": "./contract.json"
+    },
+    {
+      "date": "2026-03-14",
+      "file": "./contracts/2026-03-14.json"
+    }
+  ]
+}
