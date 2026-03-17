@@ -1,13 +1,11 @@
 :root {
-  --bg: #f5f8f6;
-  --paper: #fffdf9;
-  --ink: #233127;
-  --muted: #6d7c72;
-  --accent: #4f8a66;
-  --line: #d8e3db;
-  --soft-mint: #eaf4ed;
-  --kill-bg: #f4f1f2;
-  --kill-ink: #7a7a7a;
+  --bg: #f6f8f7;
+  --paper: #ffffff;
+  --ink: #1f2a24;
+  --muted: #5f6f66;
+  --accent: #4a8d66;
+  --line: #dbe4df;
+  --soft-mint: #edf8f1;
 }
 
 * {
@@ -16,12 +14,9 @@
 
 body {
   margin: 0;
-  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family: "Avenir Next", "IBM Plex Sans", "Segoe UI", sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 0% 0%, #edf4ef 0%, transparent 45%),
-    radial-gradient(circle at 100% 100%, #f5efef 0%, transparent 45%),
-    var(--bg);
+  background: var(--bg);
 }
 
 .page {
@@ -35,15 +30,8 @@ body {
 .card {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 16px;
-}
-
-#current-pull-checklist {
-  background: var(--soft-mint);
-  border: 1px solid #cfe2d4;
   border-radius: 10px;
-  padding: 10px;
+  padding: 12px 14px;
 }
 
 h1, h2 {
@@ -65,7 +53,13 @@ h2 {
 
 .pull-title {
   margin: 2px 0 10px;
-  font-size: 1.08rem;
+  font-size: 1.04rem;
+  font-weight: 600;
+}
+
+.active-focus {
+  background: var(--soft-mint);
+  border-color: #cfe3d5;
 }
 
 .header-row {
@@ -197,6 +191,46 @@ input[type="password"] {
   gap: 8px;
 }
 
+.checklist-item-main {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  flex: 1;
+}
+
+.reorder-controls {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.reorder-btn {
+  min-width: 28px;
+  padding: 2px 6px;
+}
+
+.pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid #cbd9cf;
+  background: #f2f7f3;
+  color: #355646;
+}
+
+.pill.warn {
+  background: #fff7e8;
+  border-color: #e9d8b2;
+  color: #7a5a1d;
+}
+
+.pill.danger {
+  background: #fff0f0;
+  border-color: #e8bcbc;
+  color: #7a2d2d;
+}
+
 .checklist input[type="checkbox"] {
   margin-top: 4px;
 }
@@ -216,14 +250,21 @@ input[type="password"] {
   display: none;
 }
 
-.kill-card {
-  background: var(--kill-bg);
-  border-color: #ddd4d7;
+.log-list {
+  gap: 6px;
 }
 
-.killed span {
-  color: var(--kill-ink);
-  text-decoration: line-through;
+.log-list li {
+  display: block;
+  background: #f7faf8;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.log-line {
+  margin: 0;
+  line-height: 1.35;
 }
 
 @media (max-width: 560px) {

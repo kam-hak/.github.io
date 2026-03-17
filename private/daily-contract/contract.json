@@ -1,23 +1,28 @@
 {
-  "date": "2026-03-15",
+  "date": "2026-03-16",
   "owner": "Kamran",
-  "current_pull": {
-    "title": "Submit Thailand reimbursement packet",
-    "checklist": [
-      "Gather flight, in-country flights, Airbnb, and visa receipts",
-      "Upload packet on Pitt reimbursement portal",
-      "Capture confirmation reference in ops notes"
-    ]
+  "pull_rules": {
+    "today_hopper_limit": 5
   },
-  "allowed_switches": [
-    "Hard external deadline inside 24 hours",
-    "Current pull is blocked by missing required external input",
-    "Emergency family/health interruption"
+  "priority_container": "phd-dissertation",
+  "priority_workstream": "experiment-irb",
+  "priority_project": "Run experiment-first triage to produce a concrete IRB next-step path",
+  "today_hopper": [
+    "Send the short Ellsberg note to May",
+    "Run a focused experiment-first dissertation triage block",
+    "Write the concrete IRB next-step path for Tuesday, 2026-03-17"
   ],
-  "parking_lot": [
-    "Thailand research visa application",
-    "Session 4 slide cleanup",
-    "Dissertation coding block"
+  "holding_tank": [
+    "Thailand reimbursement + visa unless date-critical",
+    "Qualitative dissertation block for 2026-04-06 readiness",
+    "Naw-Ruz prep",
+    "Relationship maintenance beyond urgent replies",
+    "Premises work"
   ],
-  "notes": "Single active pull only. Everything else stays parked until you explicitly re-decide."
+  "competing_demands": [
+    "Teaching follow-through from Session 4 stabilization",
+    "Admin miscellany + inbox interruptions",
+    "Energy constraints from fasting and sleep limits"
+  ],
+  "notes": "One active project at a time. Pull from holding tank only when active capacity opens."
 }

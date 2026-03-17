@@ -1,13 +1,16 @@
 # Daily Contract Tracker (Static)
 
-Very simple static tracker for one daily contract with checkboxes, a kill list, and previous-day links.
+Very simple static tracker for one daily contract with checkboxes, pull workflow state, and previous-day links.
 
 ## What it does
 
 - Light password gate in the browser (client-side hash check).
-- Displays one `Current Pull`, `Allowed Switches`, `Parking Lot`, and `🔪🪦 Just Killed`.
+- Displays one day-orienting `Priority Workstream` (container + workstream + focus statement), `Contract Tasks` (ordered hopper), `Competing Demands`, and a `Later Queue`.
 - Shows previous-day contract links from `history.json`.
 - Saves checkbox state in browser `localStorage` per day (`date` key in `contract.json`).
+- Supports in-page reordering of the today hopper and persists the order per day.
+- Shows contract-adherence status (`On Contract` vs drift) plus jump/reorder metrics.
+- Logs reorder/checkoff/undo events to a per-day contract activity log.
 
 ## Security note
 
@@ -38,7 +41,7 @@ web/daily-contract/set-password-hash.sh
 
 - `index.html`: UI
 - `styles.css`: styling
-- `script.js`: password gate + checklist logic
+- `script.js`: password gate + checklist logic + reorder + activity log
 - `set-password-hash.sh`: reads `.env.daily-contract` and updates password hash
 - `contract.json`: current daily contract data
 - `history.json`: linked daily archive index

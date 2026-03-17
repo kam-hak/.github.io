@@ -31,25 +31,36 @@
           <p id="contract-meta" class="muted"></p>
         </header>
 
-        <section class="card">
-          <h2>Current Pull</h2>
-          <p id="current-pull-title" class="pull-title"></p>
-          <ul id="current-pull-checklist" class="checklist"></ul>
+        <section class="card active-focus">
+          <h2>Priority Workstream</h2>
+          <p id="priority-context" class="muted"></p>
+          <p id="priority-project" class="pull-title"></p>
+          <p id="pressing-now" class="muted"></p>
         </section>
 
         <section class="card">
-          <h2>Allowed Switches</h2>
-          <ul id="allowed-switches" class="plain-list"></ul>
+          <h2>Contract Tasks (Priority Order)</h2>
+          <p class="muted">Work top to bottom. Reorder with arrows. Keep one item active at a time.</p>
+          <ul id="today-hopper" class="checklist"></ul>
         </section>
 
         <section class="card">
-          <h2>Parking Lot</h2>
-          <ul id="parking-lot" class="plain-list parking-list"></ul>
+          <div class="header-row">
+            <h2>Contract Adherence</h2>
+            <span id="adherence-pill" class="pill">No Signal Yet</span>
+          </div>
+          <p id="next-priority" class="muted"></p>
+          <ul id="adherence-metrics" class="plain-list"></ul>
         </section>
 
-        <section class="card kill-card">
-          <h2>🔪🪦 Just Killed</h2>
-          <ul id="killed-list" class="plain-list"></ul>
+        <section class="card">
+          <h2>Competing Demands</h2>
+          <ul id="competing-demands" class="plain-list"></ul>
+        </section>
+
+        <section class="card">
+          <h2>Later Queue</h2>
+          <ul id="later-queue" class="plain-list"></ul>
         </section>
 
         <section class="card">
@@ -65,6 +76,14 @@
             <span class="swatch level-4"></span>
             <span>More</span>
           </div>
+        </section>
+
+        <section class="card">
+          <div class="header-row">
+            <h2>Contract Log</h2>
+            <button id="clear-log-btn" type="button" class="secondary tiny">Clear Log</button>
+          </div>
+          <ul id="contract-log" class="plain-list log-list"></ul>
         </section>
 
         <section class="card">

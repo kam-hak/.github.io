@@ -1,8 +1,13 @@
 {
   "contracts": [
     {
-      "date": "2026-03-15",
+      "date": "2026-03-16",
       "file": "./contract.json",
+      "checked_off_count": 0
+    },
+    {
+      "date": "2026-03-15",
+      "file": "./contracts/2026-03-15.json",
       "checked_off_count": 0
     },
     {

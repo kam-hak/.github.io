@@ -1,0 +1,24 @@
+{
+  "date": "2026-03-15",
+  "owner": "Kamran",
+  "pull_rules": {
+    "active_project_limit": 1,
+    "today_hopper_limit": 5
+  },
+  "active_project": "Thailand reimbursement packet",
+  "today_hopper": [
+    "Gather flight, in-country flights, Airbnb, and visa receipts",
+    "Upload packet on Pitt reimbursement portal",
+    "Capture confirmation reference in ops notes"
+  ],
+  "holding_tank": [
+    "Thailand research visa application",
+    "Session 4 slide cleanup",
+    "Dissertation coding block"
+  ],
+  "competing_demands": [
+    "Teaching load block",
+    "Routine admin + inbox maintenance"
+  ],
+  "notes": "One active project at a time. Pull from holding tank when active capacity opens."
+}
