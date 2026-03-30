@@ -9,6 +9,14 @@ import html
 OBSIDIAN_DIR = "/Users/kamran/Documents/Obv_vault_kamran/98 Timestamps/Daily notes"
 BLOG_DIR = "/Users/kamran/.github.io/blog"
 ASSETS_DIR = os.path.join(BLOG_DIR, "assets")
+TIL_PLACEHOLDER_SNIPPETS = ("### {idea}", "### {tool}")
+META_STATE = "til_state"
+META_ORIGIN = "til_origin"
+META_PUBLISHED_POST = "til_published_post"
+META_PUBLISHED_AT = "til_published_at"
+META_SUPERSEDED_BY = "til_superseded_by"
+STATE_PUBLISHED = "published"
+FRONTMATTER_PATTERN = re.compile(r"\A---\n(.*?)\n---\n?", re.DOTALL)
 
 
 def get_todays_note_path():
@@ -46,6 +54,59 @@ def extract_til_section(note_path):
 
     print(f"TIL section found. Length: {len(til_content)}")
     return til_content
+
+
+def is_placeholder_til(til_content):
+    return all(snippet in til_content for snippet in TIL_PLACEHOLDER_SNIPPETS)
+
+
+def extract_frontmatter(content):
+    match = FRONTMATTER_PATTERN.match(content)
+    if not match:
+        return None, content
+    return match.group(1), content[match.end() :]
+
+
+def set_frontmatter_values(content, values):
+    frontmatter, body = extract_frontmatter(content)
+    if frontmatter is None:
+        lines = [f"{key}: {value}" if value else f"{key}:" for key, value in values.items()]
+        return "---\n" + "\n".join(lines) + "\n---\n" + body
+
+    lines = frontmatter.splitlines()
+    key_line_indices = {}
+    for i, line in enumerate(lines):
+        match = re.match(r"^([A-Za-z0-9_-]+):", line)
+        if match:
+            key_line_indices[match.group(1)] = i
+
+    for key, value in values.items():
+        replacement = f"{key}: {value}" if value else f"{key}:"
+        if key in key_line_indices:
+            lines[key_line_indices[key]] = replacement
+        else:
+            lines.append(replacement)
+
+    return "---\n" + "\n".join(lines) + "\n---\n" + body
+
+
+def mark_note_as_published(note_path, published_post_filename):
+    with open(note_path, "r", encoding="utf-8") as file:
+        content = file.read()
+
+    updated = set_frontmatter_values(
+        content,
+        {
+            META_STATE: STATE_PUBLISHED,
+            META_PUBLISHED_POST: published_post_filename,
+            META_PUBLISHED_AT: datetime.now().isoformat(timespec="seconds"),
+            META_SUPERSEDED_BY: "",
+            META_ORIGIN: "",
+        },
+    )
+
+    with open(note_path, "w", encoding="utf-8") as file:
+        file.write(updated)
 
 
 def generate_title_options(til_content):
@@ -420,6 +481,9 @@ def main():
     if not til_content:
         print("No TIL section found in the note.")
         return
+    if is_placeholder_til(til_content):
+        print("TIL section still has placeholder snippets; not publishing.")
+        return
     # Add after extracting TIL content
     print(f"TIL content length: {len(til_content)}")
     print(f"Last 100 characters: {til_content[-100:]}")
@@ -464,6 +528,8 @@ def main():
 
     # Update the blog index
     update_blog_index(BLOG_DIR, os.path.basename(html_path), title)
+    published_md_filename = os.path.basename(html_path).replace(".html", ".md")
+    mark_note_as_published(note_path, published_md_filename)
     print(f"Blog post '{title}' has been successfully saved and converted to HTML.")
 
 
