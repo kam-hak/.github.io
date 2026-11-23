@@ -4,11 +4,11 @@
 body {
     font-family: "Newsreader", Georgia, "Times New Roman", serif;  /* Variable serif with classic tone */
     background-color: #ffffff;  /* White background */
-    color: #000000;  /* Black text for strong contrast */
-    margin: 1.5rem;  /* Consistent spacing unit */
+    color: #1a1a1a;  /* Near-black: strong contrast without glare */
+    margin: 1.5rem auto;  /* Center the reading column */
     padding: 0 1.5rem;
     max-width: 65ch; /* Restricts the maximum width of the content */
-    font-size: 16px;  /* Explicit base font size */
+    font-size: clamp(17px, 1rem + 0.35vw, 19px);  /* Newsreader runs small; read at 17-19px */
 }
 
 a {
@@ -30,9 +30,13 @@ header {
     max-width: 65ch; /* Restricts the maximum width of the header */
 }
 
-/* Typographic Scale - Each level is ~1.25x the previous */
+/* Typographic scale, relative to body text so headings stay below the prose's weight */
+h1, h2, h3, h4 {
+    font-weight: 600;
+}
+
 h1 {
-    font-size: 2.44rem;  /* 39px */
+    font-size: 2em;
     color: #00006B;
     margin-top: 2rem;
     margin-bottom: 0.75rem;
@@ -40,7 +44,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.95rem;  /* 31px */
+    font-size: 1.5em;
     color: #00006B;
     margin-top: 1.75rem;
     margin-bottom: 0.75rem;
@@ -48,7 +52,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1.56rem;  /* 25px */
+    font-size: 1.25em;
     color: #00006B;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
@@ -56,7 +60,7 @@ h3 {
 }
 
 h4 {
-    font-size: 1.25rem;  /* 20px */
+    font-size: 1.1em;
     color: #00006B;
     margin-top: 1.25rem;
     margin-bottom: 0.5rem;
@@ -98,8 +102,8 @@ main {
 
 /* Paragraph styling */
 p {
-    line-height: 1.4;  /* Optimal readability - not too tight, not too loose */
-    margin-bottom: 1rem;  /* Consistent paragraph spacing */
+    line-height: 1.6;
+    margin-bottom: 1.1em;
 }
 
 /* List styling - simplified and more readable */
@@ -109,7 +113,7 @@ ol {
   margin-bottom: 1rem;        /* consistent with paragraph spacing */
   padding-left: 1.5rem;       /* space for bullet or number */
   max-width: 65ch;
-  line-height: 1.4;           /* match paragraph line height */
+  line-height: 1.6;           /* match paragraph line height */
 }
 
 ul li,
@@ -119,4 +123,45 @@ ol li {
 
 li + li {
   margin-top: 0;              /* remove extra spacing - handled by margin-bottom */
+}
+
+blockquote {
+  margin: 1.25em 0;
+  padding-left: 1em;
+  border-left: 3px solid #00006B;
+  color: #333;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+pre, code {
+  font-size: 0.85em;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+mark {
+  background-color: #fff3a3;
+}
+
+/* Footnotes and references read as apparatus, not body text */
+.footnotes, #refs {
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+#refs .csl-entry {
+  margin-bottom: 0.5em;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
 }
