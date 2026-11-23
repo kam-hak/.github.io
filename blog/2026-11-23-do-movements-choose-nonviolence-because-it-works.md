@@ -1,5 +1,5 @@
 ---
-title: "Do movements choose nonviolence because it works? Also: intent as AI’s missing abstraction"
+title: "Does nonviolence work, or do strategic actors select it *when* it does? Also: intent as AI’s missing abstraction"
 ---
 
 ##  Research / Theory
