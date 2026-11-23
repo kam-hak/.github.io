@@ -2,16 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Do movements choose nonviolence because it works? Also: intent as AI's missing abstraction</title>
+  <title>Do movements choose nonviolence because it works? Also: intent as AI’s missing abstraction</title>
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -22,7 +32,46 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }@media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
@@ -42,7 +91,9 @@
 <p>If principled nonviolence says that nonviolence is correct regardless of its effect, strategic nonviolence says that nonviolence is good because it works, because it’s effective.</p>
 <p>Paragons of nonviolence have been explicitly strategic – not principled – about nonviolence, directly stating they would switch if nonviolence were less effective. Aung San Suu Kyi had this revealing dialogue on the topic:</p>
 <blockquote>
-<p>SUE LAWLEY (interviewer): <em>Nevertheless, Aung San Suu Kyi, Nelson Mandela himself changed, didn’t he? He said that non-violence as a tactic should be abandoned when it no longer worked. Is that something you might be tempted by?</em> AUNG SAN SUU KYI: <em>It’s possible because I have said in the lectures that I do not hold to non-violence for moral reasons, but for practical and political reasons, because I think it’s best for the country. And even Ghandi, who is supposed to be the father of non-violence, said that between cowardice and violence, he’d choose violence any time</em> <a href="https://downloads.bbc.co.uk/rmhttp/radio4/transcripts/2011_reith1.pdf">BBC Reith Lecture 2011</a></p>
+<p>SUE LAWLEY (interviewer): <em>Nevertheless, Aung San Suu Kyi, Nelson Mandela himself changed, didn’t he? He said that non-violence as a tactic should be abandoned when it no longer worked. Is that something you might be tempted by?</em><br />
+AUNG SAN SUU KYI: <em>It’s possible because I have said in the lectures that I do not hold to non-violence for moral reasons, but for practical and political reasons, because I think it’s best for the country. And even Ghandi, who is supposed to be the father of non-violence, said that between cowardice and violence, he’d choose violence any time</em><br />
+<a href="https://downloads.bbc.co.uk/rmhttp/radio4/transcripts/2011_reith1.pdf">BBC Reith Lecture 2011</a></p>
 </blockquote>
 <h4 id="duties-and-competing-principles">Duties and competing principles</h4>
 <p>There are a few different philosophical branches that nonviolence can fit into, but I think the two easiest mappings are deontological and utilitarian. Oftentimes, from a political science perspective, these things can look the same or very similar.</p>

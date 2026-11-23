@@ -1,10 +1,9 @@
 ---
-title: "Do movements choose nonviolence because it works? Also: intent as AI's missing abstraction"
+title: "Do movements choose nonviolence because it works? Also: intent as AI’s missing abstraction"
 ---
 
-
-
 ##  Research / Theory
+
 
 ### Strategic versus Principled Nonviolence
 
@@ -14,6 +13,7 @@ By type, I mean the mental model or beliefs, explicit or implicit, of the practi
 
 I believe this should be separated into two camps with different implications for finding an 'effect': **principled** nonviolence and **strategic** nonviolence (which can be combined). Combining these in analysis causes major issues for answering the theoretical question, as strategic nonviolence directly implies purposive selection into nonviolence.
 
+
 #### Principled nonviolence
 
 Principled nonviolence views the use of nonviolence in contentious politics as deontological. This means the correctness of nonviolence is independent of its effectiveness, either in an aggregate sense or in a specific sense. Typically, there would be a spiritual, ideological, or religious preference for and belief in nonviolence as being good, regardless of its effect.
@@ -21,6 +21,7 @@ Principled nonviolence views the use of nonviolence in contentious politics as d
 Even deontological or principled nonviolence may have gradations. The principle of nonviolence may come into conflict with other deontological goals, such as some kind of end state for society or some sort of effect on a certain group. In these cases, nonviolence could still be forsaken for violence if it conflicts with other principles seen as more pressing.
 
 In these cases, however, the distinction between principled and non-principled nonviolence is that, while some other value superseded nonviolence, nonviolence would still have been a better path to that objective. All else equal, if nonviolence could have solved the dilemma, that would have been better. So the principle still stands.
+
 
 #### Strategic nonviolence
 
@@ -32,6 +33,7 @@ Paragons of nonviolence have been explicitly strategic – not principled – ab
 > AUNG SAN SUU KYI: *It’s possible because I have said in the lectures that I do not hold to non-violence for moral reasons, but for practical and political reasons, because I think it’s best for the country. And even Ghandi, who is supposed to be the father of non-violence, said that between cowardice and violence, he’d choose violence any time*
 > [BBC Reith Lecture 2011](https://downloads.bbc.co.uk/rmhttp/radio4/transcripts/2011_reith1.pdf)
 
+
 #### Duties and competing principles
 
 There are a few different philosophical branches that nonviolence can fit into, but I think the two easiest mappings are deontological and utilitarian. Oftentimes, from a political science perspective, these things can look the same or very similar.
@@ -42,11 +44,13 @@ In the case of nonviolence, people who hold a principled or deontological view c
 
 Just because a person or group stops being nonviolent does not mean they've given up on nonviolence. They may still hold nonviolence as a deontological commitment but view other things as more important. A principled practitioner could use or not use nonviolence in a specific scenario without implying that they've given up on nonviolence.
 
+
 #### The audience and the strategic preference
 
 The audience is operative in strategic concerns, as most nonviolent benefits flow through being perceived as being morally advantaged [@Chenoweth_2013_WhyCivilResistance]. Someone could also be using nonviolence because others view nonviolence as better. Putting the reason aside, others may prefer nonviolence. This could be a principled, utilitarian, or strategic preference of the audience or any outside actor, including the state.
 
 If nonviolence is seen as the best path to an objective, but neither good nor bad in and of itself, that's a strategic view of nonviolence. One of its most famous practitioners is Aung San Suu Kyi, quoted above. She was looking at the role of nonviolence in her context. If she were placed into a different context – including Myanmar in post-2021 – she may have embraced violence. Critically, this selection is endogenous to context.
+
 
 #### When nonviolence has no route to working
 
@@ -60,6 +64,7 @@ There are situations in real life where, because of pressures on the military, p
 
 Many arguments for why nonviolence is effective are contingent on things like an audience, or others recognizing the voice of nonviolent actors as legitimate in the public space. If they simply don't acknowledge the discourse or moral valence of claimants practicing nonviolence, no amount of nonviolence will ever work.
 
+
 #### What changes a practitioner's willingness to use violence?
 
 Practicing nonviolence for principled versus utilitarian reasons has clear implications. If a person in a machine was deaf and blind and could not possibly be reasoned with, a principled nonviolent practitioner would refrain from doing violence against this person because the commitment to nonviolence was never premised on its effectiveness. Its ineffectiveness here would not, all else equal, change the permissibility of using violence for the same aims.
@@ -72,6 +77,7 @@ Now say a different duty arose, such as the duty to prevent a catastrophe, where
 
 A strategic practitioner says that nonviolence has certain benefits, but these are contingent on the political opportunity around its use. As nonviolence becomes less effective as a strategy, their adherence to it goes down and their willingness to contemplate other things goes up.
 
+
 #### Why this matters for measuring effectiveness
 
 Actors are selecting nonviolence from a menu of strategies in relation to their aims. Either a principled or a strategic practitioner may use violence. In the principled case, they may still hold nonviolence as a value but have a higher-order value that conflicts with it. In the strategic case, they give up on nonviolence because it becomes less effective in attaining their goal or the end state they actually value.
@@ -81,7 +87,9 @@ It may not be that nonviolence is more effective, but that practitioners select 
 This may confound measurements that do not have true variation and randomness. Hypothetically, what would we need to test whether violence or nonviolence is more effective? We would need plausibly exogenous, not strategic, selection of violence vs. nonviolence across settings. That is, some external force which 'tips' movements from one to the other. It is hard to imagine what this might be, as movements are explicitly strategic endeavors. Additionally, variations in selection may also be correlated with variation in outcomes. For instance, during the Arab Spring, not only the movement but also governments may shift their perceived efficacy of nonviolence. If the same event shifts both the choice of tactic and the outcome, it cannot serve as an instrumental variable (the exclusion restriction is violated).
 
 
+
 ## Tooling
+
 
 ### Intent as a missing abstraction
 
@@ -93,10 +101,10 @@ This may confound measurements that do not have true variation and randomness. H
 - A seemingly fruitful design problem is how LLM's themselves can work with a human to boot-strap high quality intent – this is the attempt at '`/grill-me` and other skills which seek to extract intent. 
 - However, this extraction seems unlikely to succeed unless it can fill in the areas where the human's domain expertise is actually weak. You can not ask the human to give you specific intent that they cannot draw on the domain-specific details to imagine (i.e. i cannot ask an LLM to create an excellent movie, because I do not even have the vocabulary for what makes a movie great. This is not taste as judgment, it's a domain vocabulary which allows expressing a vision of what does not exist precisely.) This almost always requires not only domain expertise but extracting some unique aspect of 'vision' from the human without [contaminating the human with oatmeal-ness](https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/).
 
+
 ### You're an executive, but whither the AI-firms?
 
 - This relates to an idea Sam Schillace has been incubating in his newsletter that we are '[all executives now](https://sundaylettersfromsam.substack.com/p/youre-the-executive-now)'. Being an executive is unlike other work because you own only the **intent** and **outcome**, but all the process and work is otherwise mediated through organizational interfaces. This is what hierarchy was created to solve: giving executives meso-level interfaces for processing information to interact with. This is what 'orchestrators' are in the AI world, they are middle management, and you are the executive. 
 	- However, building tools for AI-organizational management is still a motley aggregation of prototypes. There are no standard patterns for what the primitives of an organization should be ( but lots of opinionated prototypes! e.g.: [pstack](https://github.com/cursor/plugins/tree/main/pstack), [swamp](https://swamp-club.com/), [mainplane](https://mainplane.ai/)).
 - Executives are effective when they can *achieve their intent through indirect management*. The indirectness is what lets organizations scale, while effective management means intent is not lost (or inefficient) due to coordination costs. Fundamentally, executives work through hierarchy.
 - [Alex Imas et al.](https://arxiv.org/abs/2611.05417) make the case that the 'binding constraint' for LLM's ability to transform our economy is that they are poor at information coordination on large tasks -– i.e. they are bad at working in hierarchies. This caps the Coasean ceiling for their size, since they get weak returns from decomposing tasks to multiple agents. Currently LLMs are not post-trained to coordinate. Thus, they have very weak information processing compared to human organizations, in which middle management – despite its reputation – is the critical information processing interface between executives and agents.
-
